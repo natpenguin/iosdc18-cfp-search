@@ -1,0 +1,11 @@
+# system
+.DS_Store
+
+# library
+lib/
+
+# credential
+credential.py
+
+# auto generate files
+*.pyc
