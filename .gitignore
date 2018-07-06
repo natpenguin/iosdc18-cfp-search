@@ -9,3 +9,6 @@ credential.py
 
 # auto generate files
 *.pyc
+
+# mongo
+/db
