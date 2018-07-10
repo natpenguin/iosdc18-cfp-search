@@ -5,7 +5,7 @@ from urllib.request import urlopen
 from lxml import html 
 import csv
 import re
-import pymongo
+import cfp_persistence_manager as cpm
 
 def main():
     cfps = []
@@ -16,7 +16,7 @@ def main():
         rawData = fetchPageData(i)
         cfps = cfps + parseHTML(rawData)
 
-    mongoClient = mongo().insert(cfps)
+    mongoClient = cpm.cfp_mongo().insert(cfps)
     save_csv(cfps) # デバッグ用
 
 def fetchPageData(page_num):
@@ -108,17 +108,6 @@ class CFP:
         cfp.twitter_id = cfpTree.xpath('.//span[contains(@class,"left20")]/a')[0].text 
         cfp.desc()
         return cfp
-
-# モジュール化したほうがよさそ
-class mongo:
-    def __init__(self):
-        # mongodb へのアクセスを確立
-        self.client = pymongo.MongoClient('localhost', 27017)
-        self.database = self.client.iosdc2018_phase_0
-        self.collection = self.database.cfps
-
-    def insert(self, cfps):
-        self.collection.insert_many(map(lambda x: x.generate_document(), cfps))
 
 if __name__ == '__main__':
     main()
