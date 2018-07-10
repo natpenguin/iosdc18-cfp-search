@@ -11,6 +11,14 @@ $ pip3 install -r requirements.txt -c constraints.txt
 $ gunicorn api:app
 ```
 
+## Lint
+
+please specify a any file to `target.py` .
+```
+$ pip3 install -r requirements.txt -c constraint.txt
+$ pep8 target.py
+```
+
 ## Run on docker
 
 ```bash
