@@ -4,10 +4,14 @@ services:
     build: ./nginx
     ports:
       - "80:80"
+    depends_on:
+      - web
   web:
     build: .
     ports:
       - "8000:8000"
+    environment: 
+      - CFP_MONGO_HOST=mongo
     depends_on:
       - mongo
   mongo:
