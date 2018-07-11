@@ -24,3 +24,31 @@ $ pep8 target.py
 ```bash
 docker-compose up
 ```
+## Environment variable
+* Host of MongoDB  
+ `"CFP_MONGO_HOST"`
+ 
+* Port of MongoDB  
+ `"CFP_MONGO_PORT"`
+ 
+## MongoDB
+* Database name
+  * before adopting cfps  
+    `"iosdc2018_phase_0"`
+  * after adopting cfps  
+    `"iosdc2018_phase_1"`
+* Collection name  
+    `"cfps"`
+* Document scheme
+  ```python
+    [{
+    "title": String,
+    "user": String,
+    "talk_type": String,
+    "description": String,
+    "icon_url": String,
+    "twitter_id": String
+    }]
+  ```
+
+ 
