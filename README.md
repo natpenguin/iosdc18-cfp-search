@@ -37,7 +37,7 @@ docker-compose up
     `"iosdc2018_phase_0"`
   * after adopting cfps  
     `"iosdc2018_phase_1"`
-* Collection name
+* Collection name  
     `"cfps"`
 * Document scheme
   ```python
