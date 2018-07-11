@@ -48,7 +48,7 @@ docker-compose up
     "description": String,
     "icon_url": String,
     "twitter_id": String
-}]
+    }]
   ```
 
  
