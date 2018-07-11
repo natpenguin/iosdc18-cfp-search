@@ -33,9 +33,9 @@ docker-compose up
  
 ## MongoDB
 * Database name
-  * before adopting cfps
+  * before adopting cfps  
     `"iosdc2018_phase_0"`
-  * after adopting cfps
+  * after adopting cfps  
     `"iosdc2018_phase_1"`
 * Collection name
     `"cfps"`
