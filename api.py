@@ -1,6 +1,6 @@
 import falcon
 import pymongo
-import cfp_persisntence_manager as cpm
+import cfp_persistence_manager as cpm
 
 class Resource(object):
     def on_get(self, req, resp):
