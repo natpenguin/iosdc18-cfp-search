@@ -10,6 +10,12 @@ class Resource(object):
         # 要変換処理
         resp.body = (mongo_response)
 
-app = falcon.API()
-app.add_route('/', Resource())
+class ResourceHealth(object):
+    def on_get(self, req, resp):
+        """Handles GET requests"""
+        resp.status = falcon.HTTP_200
+        resp.body = "OK"
 
+app = falcon.API()
+app.add_route('/api', Resource())
+app.add_route('/api/health', ResourceHealth())
