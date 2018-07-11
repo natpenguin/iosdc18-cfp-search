@@ -1,0 +1,26 @@
+﻿title,user,talk_type,description,icon_url,twitter_id
+リアルタイム革命,西谷圭介                    ,レギュラートーク（30分）,チャットに代表されるリアルタイムなアプリケーションを皆さんはどのように開発していますか？リアルタイムな双方向通信をサポートするソリューションを利用したり、Socket.ioなどを用いてWebSocketで自前で構築するなどあると思います。本セッションでは新たなクエリ言語として注目されるGraphQLのSubscriptionを用いる方法をGraphQLのマネージドサービスであるAWS AppSyncとあわせてご紹介します。                ,https://fortee.jp/files/iosdc-japan-2018/speaker/a671c733-f784-4e63-847d-6688a7521f62.jpeg,Keisuke69
+Charles でネットワークデバッギング,Kazumasa Kumamoto                    ,レギュラートーク（15分）,"「API から何が返ってきているかわからない」「色々なパターンの返り値の表示を見てみたい」といった経験はないでしょうか？
+
+Charles なら、通信の中身を確認することができるだけでなく、リクエスト/レスポンスの編集、リクエスト先の変更など、アプリ開発のデバッグに便利な機能を使うことができます。
+
+この記事では Charles を使ったことがない人向けに、 Charles の基本的な使いかたと使いどころについてご紹介します。                ",https://fortee.jp/files/iosdc-japan-2018/speaker/df547841-ac92-48c4-951a-46efad4b4563.jpg,kumamo_tone
+VIPERを社内に普及した方法とその後,Objective-ひろC                    ,レギュラートーク（15分）,VIPERというアーキテクチャに魅力を感じ、社内の合意を得て新規アプリへの導入に至ったその一連の経緯と、実際にVIPERで1本アプリを作って感じたその魅力や実装上の反省点などについて体験談を交えながらお話しします。                ,https://fortee.jp/files/iosdc-japan-2018/speaker/8a1c43b3-c593-4c18-8c96-47c365509778.jpg,hirothings
+iOSエンジニアだけどPWAめっちゃ怖い,Takezawa Toshiki                    ,レギュラートーク（15分）,"2017年Instagram, TwitterなどのモバイルサイトがPWAを採用し話題になりましたね！またiOS11.3からPWAに対する一部の機能が追加で利用できるようになり、Webの技術を用いネイティブと遜色ないUI/UXに近づいて来ているのでは無いかと思います。
+本トークでは、ネイティブエンジニアから見たPWAの脅威とは、どのような場面で最適な選択肢となるのかを発表します。                ",https://fortee.jp/files/iosdc-japan-2018/speaker/b31ce1a9-6f90-48ad-b798-c8202f7e1440.jpg,to4iki
+SicaというAnimationライブラリ作成したお話,funzin                    ,iOSDCルーキーズ LT（5分）,"昨今では、Animationを使用する際に「CoreAnimation, UIVIewPropertyAnimator, UIView.animate」など多くのパターンが考えられます。みなさんはどのパターンでAnimationを使用することが多いですか？
+今回はSikaというAnimationライブラリをなぜ作ったのかなど作成秘話を赤裸々にLTします。                ",https://fortee.jp/files/iosdc-japan-2018/speaker/cdfdc6d5-a58c-47f1-b3d0-c51e9959c678.jpg,fufunzin
+iOSエンジニアだけどPWAめっちゃ怖い,Takezawa Toshiki                    ,LT（5分）,"2017年Instagram, TwitterなどのモバイルサイトがPWAを採用し話題になりましたね！またiOS11.3からPWAに対する一部の機能が追加で利用できるようになり、どんどんWeb機能を再利用しネイティブと遜色ないUI/UXに近づいて来ているのでは無いかと思います。
+
+本トークでは、ネイティブエンジニアの立場からPWAの脅威を発表し、どのような場面で最適な選択肢となるのかを発表します。                ",https://fortee.jp/files/iosdc-japan-2018/speaker/b31ce1a9-6f90-48ad-b798-c8202f7e1440.jpg,to4iki
+気遣いの iOS programming,ezura                    ,レギュラートーク（15分）,"ちょっとした気遣いの積み重ねが人に優しく美しいコードを支えます。
+「Swift という素晴らしい言語の力を存分に使い、人を導くコードを書く」「UIKit の癖とうまく付き合う」
+これらを実現する、今すぐ小さく始められる、コード上での気遣いのテクニックをお話しします。
+(iOS 開発における初級者向けセッションです)                ",https://fortee.jp/files/iosdc-japan-2018/speaker/253157d3-c224-4947-b479-f49aa9af262a.jpg,eduraaa
+勇気を出して、Appleにバグレポートを出してみませんか？,Nagado                    ,レギュラートーク（30分）,AppleDeveloperProgramに、BugReporterがあることを知っていますか？開発中に見つけたiOSの不具合やドキュメントのミスなどを、Appleに報告するツールです。ネット上にはレポートの書き方を紹介している記事がいくつかアップされていたりしますが、Appleにレポートを送るなんてハードルが高く感じて躊躇ってしまいませんか？一度送ってしまえばもう怖くないはず。iOSDCでBugReporterデビューしましょう。                ,https://fortee.jp/files/iosdc-japan-2018/speaker/3e602196-6d5e-42bc-afbb-4987e4acc8dc.jpg,kzmsngd
+些細なクラッシュも放置しないための技術,akuraru                    ,LT（5分）,クラッシュはユーザー体験として非常に悪い。発生回数が低いものや原因が不明なクラッシュは、放置する危険性ことを説明し、諦めないために必要なことを解説します。                ,https://fortee.jp/files/iosdc-japan-2018/speaker/9e1b6f13-e140-4303-8aa7-14f76d1e2b7e.jpeg,akuraru
+App Reviewの不確実性に向き合う,taitodada                    ,LT（5分）,"Kyash社でのリリースサイクルについて、下記を交えてながら話ができればと思っています
+
+- リリース日が明確に決められているビッグリリースがある時の方針
+- AppleのReviewerがどういうタイミングでログインしているかログを取っているので、その開示
+- ひどいReviewerにあたってしまった時のやり取りログ                ",https://fortee.jp/files/iosdc-japan-2018/speaker/f69c0b90-4feb-4ed6-8636-c0c73f70da58.jpg,taitodada4

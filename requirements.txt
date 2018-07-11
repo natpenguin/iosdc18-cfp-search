@@ -1,3 +1,6 @@
 falcon
 gunicorn
+lxml
+urllib
+pymongo
 pep8
