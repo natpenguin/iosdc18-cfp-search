@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: web
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,10 +16,13 @@ spec:
     metadata:
       labels:
         app: web
+      annotations:
+        kubernetes.io/change-cause: "Update to 0.1.0"
     spec:
       containers:
       - name: web
-        image: gcr.io/iosdc-2018-cfp-staging/web
+        image: gcr.io/iosdc-2018-cfp-staging/web:0.1.0
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
       dnsPolicy: ClusterFirst
