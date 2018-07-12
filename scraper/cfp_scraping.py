@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from urllib.request import urlopen
-from lxml import html 
+from lxml import html
 import csv
 import re
-import cfp_persistence_manager as cpm
+from cfp_persistence_manager import mongo
+
 
 def main():
     cfps = []

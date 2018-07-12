@@ -31,4 +31,6 @@ class cfp_mongo:
         self.collection.insert_many(map(lambda x: x.generate_document(), cfps))
 
     def find_all(self):
-        self.collection.find()
+        return self.collection.find()
+
+mongo = cfp_mongo()

@@ -1,22 +1,15 @@
 import falcon
-import pymongo
-import cfp_persistence_manager as cpm
+from cfp_persistence_manager import mongo
 from bson.json_util import dumps
 
 class Resource(object):
     def on_get(self, req, resp):
-        """Handles GET requests"""
-        resp.status = falcon.HTTP_200  # This is the default status
+        resp.status = falcon.HTTP_200
+        resp.body = self.get_cfps_json()
 
-        # TODO: 暫定修正
-        client = pymongo.MongoClient(host='mongo', port=27017)
-        db = client.iosdc2018_phase_0
-        datas = db.cfps.find()
-        resp.body = dumps(datas)
-
-        # mongo_response = cpm.cfp_mongo().find_all()
-        # # 要変換処理
-        # resp.body = (mongo_response)
+    def get_cfps_json(self):
+        mongo_response = mongo.find_all()
+        return dumps(mongo_response)
 
 class ResourceHealth(object):
     def on_get(self, req, resp):
