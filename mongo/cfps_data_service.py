@@ -4,6 +4,7 @@
 import os
 import pymongo
 import threading
+from bson.json_util import dumps
 
 class cfp_mongo:
     _instance = None
@@ -31,4 +32,10 @@ class cfp_mongo:
         self.collection.insert_many(map(lambda x: x.generate_document(), cfps))
 
     def find_all(self):
-        self.collection.find()
+        return self.collection.find()
+
+    def get_cfps_json(self):
+        return dumps(self.find_all())
+
+mongo = cfp_mongo()
+
