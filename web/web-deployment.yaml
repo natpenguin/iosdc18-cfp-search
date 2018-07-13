@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: web
 spec:
-  replicas: 1
+  replicas: 3
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,7 +17,7 @@ spec:
       labels:
         app: web
       annotations:
-        kubernetes.io/change-cause: "Update to 0.1.0"
+        kubernetes.io/change-cause: "change replicas 1 to 3"
     spec:
       containers:
       - name: web
