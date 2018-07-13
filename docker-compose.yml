@@ -7,7 +7,7 @@ services:
     depends_on:
       - web
   web:
-    build: .
+    build: ./web
     ports:
       - "8000:8000"
     environment: 
