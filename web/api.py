@@ -7,7 +7,6 @@ class Resource(object):
     def on_get(self, req, resp):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200  # This is the default status
-        
 
         # TODO: 暫定修正
         client = pymongo.MongoClient(host='mongo', port=27017)
