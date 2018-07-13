@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,10 +16,13 @@ spec:
     metadata:
       labels:
         app: nginx
+      annotations:
+        kubernetes.io/change-cause: "change replicas 1 to 2"
     spec:
       containers:
       - name: nginx
         image: gcr.io/iosdc-2018-cfp-staging/nginx
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
       dnsPolicy: ClusterFirst
