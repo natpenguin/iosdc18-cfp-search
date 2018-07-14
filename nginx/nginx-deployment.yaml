@@ -17,11 +17,11 @@ spec:
       labels:
         app: nginx
       annotations:
-        kubernetes.io/change-cause: "update v4"
+        kubernetes.io/change-cause: "1st release"
     spec:
       containers:
       - name: nginx
-        image: gcr.io/iosdc-2018-cfp-staging/nginx
+        image: gcr.io/iosdc-2018-cfp-staging/nginx:0.1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
