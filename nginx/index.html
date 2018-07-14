@@ -20,24 +20,29 @@
         <input class="input" type="text" placeholder="">
     </div>
     <div id="proposals">
-        <!-- https://bulma.io/documentation/components/card/ -->
-        <div v-show="isLoad" class="card" v-for="proposal in proposals">
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt="">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">{{ proposal.title }}</p>
-                        <p class="subtitle is-6">{{ proposal.user }} / {{ proposal.twitter_id }}</p>
+            <!-- https://bulma.io/documentation/components/card/ -->
+            <div v-show="isLoad" class="" v-for="proposal in proposals">
+                <div class="section is-small">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt="">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">{{ proposal.title }}</p>
+                                    <p class="subtitle is-6">{{ proposal.user }} / {{ proposal.twitter_id }}</p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                {{ proposal.description }}
+                            </div>
+                            <span class="small">{{ proposal.talk_type }}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="content">
-                    {{ proposal.description }}
-                </div>
-                <span class="small">{{ proposal.talk_type }}</span>
             </div>
         </div>
     </div>
