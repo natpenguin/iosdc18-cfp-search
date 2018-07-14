@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ページタイトル</title>
+    <title>この素晴らしいCfPに祝福を！</title>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"></link> -->
@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+    @import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+    body {
+        font-family: Lato, "Noto Sans JP", "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    }
     .section {
         padding: 1.0rem 1.5rem;
     }
@@ -32,7 +38,43 @@
     </section>    
     <div class="container">
         <div class="section is-small">
-            <input class="input" type="text" placeholder="検索ワードを入力">
+            <!-- キーワード検索 -->
+            <div class="field is-horizontal">
+                <p class="control has-icons-left">
+                    <input class="input" type="text" placeholder="Title">
+                        <span class="icon is-small is-left">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </p>
+            </div>
+            <!-- トークタイプで検索 -->
+            <div class="field is-grouped">
+                <p class="control">
+                    <a class="button is-primary">
+                        15分トーク
+                    </a>
+                </p>
+                <p class="control">
+                    <a class="button is-light">
+                        30分トーク
+                    </a>
+                </p>
+                <p class="control">
+                    <a class="button is-light">
+                        LT
+                    </a>
+                </p>
+                <p class="control">
+                    <a class="button is-light">
+                        iOSDCルーキーズ LT
+                    </a>
+                </p>
+                <p class="control">
+                    <a class="button is-light">
+                        iOSエンジニアに聞いて欲しいトーク
+                    </a>
+                </p>
+            </div>
         </div>
         <div id="proposals">
             <!-- https://bulma.io/documentation/components/card/ -->
