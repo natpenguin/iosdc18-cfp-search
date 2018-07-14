@@ -17,7 +17,7 @@ spec:
       labels:
         app: nginx
       annotations:
-        kubernetes.io/change-cause: "1st release"
+        kubernetes.io/change-cause: "1st release."
     spec:
       containers:
       - name: nginx
