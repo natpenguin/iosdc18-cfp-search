@@ -76,31 +76,42 @@
                 </p>
             </div>
         </div>
+        <!-- プロポーザル一覧 -->
         <div id="proposals">
-            <!-- https://bulma.io/documentation/components/card/ -->
-            <div v-show="isLoad" class="" v-for="proposal in proposals">
-                <section class="section is-small">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="media">
-                                <div class="media-left">
-                                    <figure class="image is-48x48">
-                                        <img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt="">
-                                    </figure>
+            <template v-show="isLoad">
+                <!-- https://bulma.io/documentation/components/card/ -->
+                <div v-for="proposal in proposals">
+                    <section class="section is-small">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <p class="title is-4">{{ proposal.title }}</p>
+                                        <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                    </div>
                                 </div>
-                                <div class="media-content">
-                                    <p class="title is-4">{{ proposal.title }}</p>
-                                    <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                <div class="content">
+                                    {{ proposal.description }}
                                 </div>
+                                <span class="small">{{ proposal.talk_type }}</span>
                             </div>
-                            <div class="content">
-                                {{ proposal.description }}
-                            </div>
-                            <span class="small">{{ proposal.talk_type }}</span>
                         </div>
+                    </section>
+                </div>
+            </template>
+            <template v-if="isLoad === false">
+                <section class="section is-small">
+                    <div class="icon">
+                        <i class="fas fa-spinner fa-pulse fa-2x"></i>
                     </div>
+                    <p class="is-large">Now loading ...</p>
                 </section>
-            </div>
+            </template>   
         </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
