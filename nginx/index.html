@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>この素晴らしいCfPに祝福を！</title>
-    <link rel="icon" href="http://localhost/favicon.ico" type="image/x-icon">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"></link> -->
-    <!-- <script src="https://unpkg.com/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <style type="text/css">
@@ -38,8 +35,8 @@
         </div>
     </section>    
     <div class="container">
+        <!--
         <div class="section is-small">
-            <!-- キーワード検索 -->
             <div class="field is-horizontal">
                 <p class="control has-icons-left">
                     <input class="input" type="text" placeholder="Title">
@@ -48,7 +45,6 @@
                     </span>
                 </p>
             </div>
-            <!-- トークタイプで検索 -->
             <div class="field is-grouped">
                 <p class="control">
                     <a class="button is-primary">
@@ -77,6 +73,7 @@
                 </p>
             </div>
         </div>
+        -->
         <!-- プロポーザル一覧 -->
         <div id="proposals">
             <template v-show="isLoad">
@@ -139,7 +136,7 @@
                 }
             }
         })
-        axios.get('http://iosdc-stg.penginmura.tech//api')
+        axios.get('/api')
         .then(function (response) {
             var proposals = [];
             response.data.forEach(function (pros) {
