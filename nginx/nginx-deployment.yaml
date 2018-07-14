@@ -17,7 +17,7 @@ spec:
       labels:
         app: nginx
       annotations:
-        kubernetes.io/change-cause: "update v1"
+        kubernetes.io/change-cause: "update v3"
     spec:
       containers:
       - name: nginx

@@ -117,7 +117,7 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Powerd</strong> by <a href="https://penginmuratech.hatenablog.com/">ペンギン村 Tech</a>.
+                <strong>Powerd</strong> by <a href="http://blog.penginmura.tech/">ペンギン村 Tech</a>.
             </p>
             <p>
                 ペンギン村 Tech is believe in  <a href="https://iosdc.jp/2018/">iOSDC 2018</a>.
@@ -140,7 +140,19 @@
         })
         axios.get('http://iosdc-stg.penginmura.tech//api')
         .then(function (response) {
-            proposalsInstance.proposals = response.data
+            var proposals = [];
+            response.data.forEach(function (pros) {
+                var found = proposals.find(function (element) {
+                    return element.user == pros.user && element.title == pros.title && element.description == pros.description;
+                });
+                if (found) {
+                     var talk_type = found.talk_type + ' / ' + pros.talk_type;
+                     found.talk_type = talk_type.split(' / ').sort().join(' / ');
+                } else {
+                    proposals.push(pros);
+                }
+            });
+            proposalsInstance.proposals = proposals;
         })
     </script>
 </body>
