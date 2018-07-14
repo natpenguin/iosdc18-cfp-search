@@ -4,13 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>この素晴らしきCfPに祝福を</title>
+    <title>ページタイトル</title>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"></link>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
-    <script src="https://unpkg.com/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"></link> -->
+    <!-- <script src="https://unpkg.com/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 <body>
-    CfPデータが入るよ〜ん（今はからだけどね）
+    <div>
+        <h1 class="title is-2">この素晴らしいCfPに祝福を</h1>
+    </div>
+    <div>
+        <input class="input" type="text" placeholder="">
+    </div>
+    <div id="proposals">
+        <div v-show="isLoad" class="box" v-for="proposal in proposals">
+            <div>{{ proposal.title }}</div>
+            <div>{{ proposal.talk_type }}</div>
+            <div>{{ proposal.description }}</div>
+            <div>{{ proposal.talk_type }}</div>
+            <div>{{ proposal.twitter_id }}</div>
+            <div><img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt=""></div>
+            <div>{{ proposal.user }}</div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var proposalsInstance = new Vue({
+            el: '#proposals',
+            data: {
+                proposals: [],
+                isLoad: false
+            },
+            methods: {
+                loaded: function(event) {
+                    this.isLoad = true
+                }
+            }
+        })
+        axios.get('http://35.200.125.234/api')
+        .then(function (response) {
+            proposalsInstance.proposals = response.data
+        })
+    </script>
 </body>
 </html>
