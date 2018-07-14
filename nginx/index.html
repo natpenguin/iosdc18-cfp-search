@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="media-content">
                                     <p class="title is-4">{{ proposal.title }}</p>
-                                    <p class="subtitle is-6">{{ proposal.user }} / {{ proposal.twitter_id }}</p>
+                                    <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                 </div>
                             </div>
                             <div class="content">
