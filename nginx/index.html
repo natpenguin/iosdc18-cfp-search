@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="content">
-                                    {{ proposal.description }}
+                                    <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
                                 </div>
                                 <span class="small">{{ proposal.talk_type }}</span>
                             </div>
