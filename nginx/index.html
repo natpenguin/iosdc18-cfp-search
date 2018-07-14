@@ -11,18 +11,33 @@
     <!-- <script src="https://unpkg.com/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <style type="text/css">
+    .section {
+        padding: 1.0rem 1.5rem;
+    }
+    </style>
 </head>
 <body>
-    <div>
-        <h1 class="title is-2">この素晴らしいCfPに祝福を</h1>
-    </div>
-    <div>
-        <input class="input" type="text" placeholder="">
-    </div>
-    <div id="proposals">
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    この素晴らしいCfPに祝福を！
+                </h1>
+                <h2 class="subtitle">
+                    iOSDC 2018 応援サイト
+                </h2>
+            </div>
+        </div>
+    </section>    
+    <div class="container">
+        <div class="section is-small">
+            <input class="input" type="text" placeholder="検索ワードを入力">
+        </div>
+        <div id="proposals">
             <!-- https://bulma.io/documentation/components/card/ -->
             <div v-show="isLoad" class="" v-for="proposal in proposals">
-                <div class="section is-small">
+                <section class="section is-small">
                     <div class="card">
                         <div class="card-content">
                             <div class="media">
