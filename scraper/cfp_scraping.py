@@ -16,7 +16,6 @@ def main():
         rawData = fetchPageData(i)
         cfps = cfps + parseHTML(rawData)
 
-    cpm.cfp_mongo().drop()
     cpm.cfp_mongo().insert(cfps)
 
     save_csv(cfps)  # デバッグ用
