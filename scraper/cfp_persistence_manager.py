@@ -27,8 +27,11 @@ class cfp_mongo:
         self.database = self.client.iosdc2018_phase_0
         self.collection = self.database.cfps
 
+    def drop(self):
+        self.collection.drop()
+
     def insert(self, cfps):
         self.collection.insert_many(map(lambda x: x.generate_document(), cfps))
 
     def find_all(self):
-        self.collection.find()
+        return self.collection.find()
