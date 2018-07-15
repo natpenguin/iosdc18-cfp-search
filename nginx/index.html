@@ -33,15 +33,16 @@
     </section>    
     <div class="container">
         <div class="section is-small">
-        <!--
-            <div class="field is-horizontal">
+            <!-- キーワード検索 -->
+            <div id="searchField" class="field is-horizontal">
                 <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Title">
+                    <input v-on:input="filter" class="input" type="text" placeholder="検索ワード">
                         <span class="icon is-small is-left">
                         <i class="fas fa-search"></i>
                     </span>
                 </p>
             </div>
+        <!--
             <div class="field is-grouped">
                 <p class="control">
                     <a class="button is-primary">
@@ -74,7 +75,7 @@
         </div>
         <!-- プロポーザル一覧 -->
         <div id="proposals">
-            <template v-show="isLoad">
+            <template v-show="isLoaded">
                 <!-- https://bulma.io/documentation/components/card/ -->
                 <div v-for="proposal in proposals">
                     <section class="section is-small">
@@ -83,7 +84,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <figure class="image is-48x48">
-                                            <img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt="">
+                                            <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
                                         </figure>
                                     </div>
                                     <div class="media-content">
@@ -100,7 +101,7 @@
                     </section>
                 </div>
             </template>
-            <template v-if="isLoad === false">
+            <template v-if="isLoaded === false">
                 <section class="section is-small">
                     <div class="icon">
                         <i class="fas fa-spinner fa-pulse fa-2x"></i>
@@ -122,15 +123,36 @@
     </footer>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        var proposalsMaster = [];
+        var searchField = new Vue({
+            el: '#searchField',
+            methods: {
+                filter: function(event) {
+                    let text = event.target.value;
+                    if (text.length > 0) {
+                        let filteredData = proposalsMaster.filter(
+                            value => 
+                            value.title.includes(text) || 
+                            value.user.includes(text) ||
+                            value.twitter_id.includes(text) ||
+                            value.talk_type.includes(text)
+                        );
+                        proposalsInstance.proposals = filteredData;
+                    } else {
+                        proposalsInstance.proposals = proposalsMaster;
+                    }
+                }
+            }
+        });
         var proposalsInstance = new Vue({
             el: '#proposals',
             data: {
                 proposals: [],
-                isLoad: false
+                isLoaded: false
             },
             methods: {
                 loaded: function(event) {
-                    this.isLoad = true
+                    this.isLoaded = true;
                 }
             }
         })
@@ -148,6 +170,7 @@
                     proposals.push(pros);
                 }
             });
+            proposalsMaster = proposals;
             proposalsInstance.proposals = proposals;
         })
     </script>
