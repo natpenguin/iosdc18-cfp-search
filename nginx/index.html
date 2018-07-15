@@ -36,7 +36,7 @@
             <!-- キーワード検索 -->
             <div id="searchField" class="field is-horizontal">
                 <p class="control has-icons-left">
-                    <input v-on:input="filter" class="input" type="text" placeholder="Title">
+                    <input v-on:input="filter" class="input" type="text" placeholder="検索ワード">
                         <span class="icon is-small is-left">
                         <i class="fas fa-search"></i>
                     </span>
@@ -75,7 +75,7 @@
         </div>
         <!-- プロポーザル一覧 -->
         <div id="proposals">
-            <template v-show="isLoad">
+            <template v-show="isLoaded">
                 <!-- https://bulma.io/documentation/components/card/ -->
                 <div v-for="proposal in proposals">
                     <section class="section is-small">
@@ -84,7 +84,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <figure class="image is-48x48">
-                                            <img v-show="isLoad" :src="proposal.icon_url" @load="loaded" alt="">
+                                            <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
                                         </figure>
                                     </div>
                                     <div class="media-content">
@@ -101,7 +101,7 @@
                     </section>
                 </div>
             </template>
-            <template v-if="isLoad === false">
+            <template v-if="isLoaded === false">
                 <section class="section is-small">
                     <div class="icon">
                         <i class="fas fa-spinner fa-pulse fa-2x"></i>
@@ -148,11 +148,11 @@
             el: '#proposals',
             data: {
                 proposals: [],
-                isLoad: false
+                isLoaded: false
             },
             methods: {
                 loaded: function(event) {
-                    this.isLoad = true;
+                    this.isLoaded = true;
                 }
             }
         })
