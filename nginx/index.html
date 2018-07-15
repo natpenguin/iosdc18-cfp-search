@@ -134,7 +134,7 @@
                 }
             }
         })
-        axios.get('/api')
+        axios.get('http://iosdc-stg.penginmura.tech/api')
         .then(function (response) {
             var proposals = [];
             response.data.forEach(function (pros) {
