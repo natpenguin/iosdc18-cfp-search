@@ -40,9 +40,9 @@
     <div class="container">
         <div class="section is-small">
             <!-- キーワード検索 -->
-            <div class="field is-horizontal">
+            <div id="searchField" class="field is-horizontal">
                 <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Title">
+                    <input v-on:input="filter" class="input" type="text" placeholder="Title">
                         <span class="icon is-small is-left">
                         <i class="fas fa-search"></i>
                     </span>
@@ -127,6 +127,27 @@
     </footer>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        var proposalsMaster = [];
+        var searchField = new Vue({
+            el: '#searchField',
+            methods: {
+                filter: function(event) {
+                    let text = event.target.value;
+                    if (text.length > 0) {
+                        let filteredData = proposalsMaster.filter(
+                            value => 
+                            value.title.includes(text) || 
+                            value.user.includes(text) ||
+                            value.twitter_id.includes(text) ||
+                            value.talk_type.includes(text)
+                        );
+                        proposalsInstance.proposals = filteredData;
+                    } else {
+                        proposalsInstance.proposals = proposalsMaster;
+                    }
+                }
+            }
+        });
         var proposalsInstance = new Vue({
             el: '#proposals',
             data: {
@@ -135,11 +156,11 @@
             },
             methods: {
                 loaded: function(event) {
-                    this.isLoad = true
+                    this.isLoad = true;
                 }
             }
         })
-        axios.get('http://iosdc-stg.penginmura.tech//api')
+        axios.get('http://iosdc-stg.penginmura.tech/api')
         .then(function (response) {
             var proposals = [];
             response.data.forEach(function (pros) {
@@ -153,8 +174,9 @@
                     proposals.push(pros);
                 }
             });
+            proposalsMaster = proposals;
             proposalsInstance.proposals = proposals;
         })
     </script>
-</body>
+    </body>
 </html>
