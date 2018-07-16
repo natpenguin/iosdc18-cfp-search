@@ -159,10 +159,12 @@
         axios.get('/api')
         .then(function (response) {
             var proposals = [];
-            response.data.forEach(function (pros) {
-                var found = proposals.find(function (element) {
-                    return element.user == pros.user && element.title == pros.title && element.description == pros.description;
-                });
+            response.data.forEach(pros => {
+                let found = proposals.find(element =>
+                    element.user == pros.user
+                  && element.title == pros.title
+                  && element.description == pros.description
+                );
                 if (found) {
                      var talk_type = found.talk_type + ' / ' + pros.talk_type;
                      found.talk_type = talk_type.split(' / ').sort().join(' / ');
