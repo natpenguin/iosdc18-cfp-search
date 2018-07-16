@@ -171,9 +171,9 @@
             response.data.forEach(pros => {
 
                 const found = proposals.find(element =>
-                    element.user == pros.user
-                  && element.title == pros.title
-                  && element.description == pros.description
+                    element.user        == pros.user
+                 && element.title       == pros.title
+                 && element.description == pros.description
                 );
 
                 if (found) {
