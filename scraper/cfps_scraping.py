@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+import os, sys
+sys.path.append(os.pardir)
+from mongo.cfps_data_service import mongo
 from urllib.request import urlopen
 from lxml import html 
 import csv
 import re
-import cfp_persistence_manager as cpm
 
 def main():
     cfps = []
@@ -16,8 +17,8 @@ def main():
         rawData = fetchPageData(i)
         cfps = cfps + parseHTML(rawData)
 
-    mongoClient = cpm.cfp_mongo().insert(cfps)
-    save_csv(cfps) # デバッグ用
+    mongo.insert(cfps)
+    save_csv(cfps)
 
 def fetchPageData(page_num):
     data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?page={0}".format(page_num))
