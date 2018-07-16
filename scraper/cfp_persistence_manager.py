@@ -24,11 +24,14 @@ class cfp_mongo:
         port = int(os.getenv("CFP_MONGO_PORT", "27017"))
         # mongodb へのアクセスを確立
         self.client = pymongo.MongoClient(host, port)
-        self.database = self.client.iosdc2018_phase_0
+        self.database = self.client.iosdc2018_phase_1
         self.collection = self.database.cfps
+
+    def drop(self):
+        self.collection.drop()
 
     def insert(self, cfps):
         self.collection.insert_many(map(lambda x: x.generate_document(), cfps))
 
     def find_all(self):
-        self.collection.find()
+        return self.collection.find()

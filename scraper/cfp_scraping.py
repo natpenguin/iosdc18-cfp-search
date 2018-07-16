@@ -16,12 +16,14 @@ def main():
         rawData = fetchPageData(i)
         cfps = cfps + parseHTML(rawData)
 
-    mongoClient = cpm.cfp_mongo().insert(cfps)
-    save_csv(cfps) # デバッグ用
+    cpm.cfp_mongo().insert(cfps)
+
+    save_csv(cfps)  # デバッグ用
+
 
 def fetchPageData(page_num):
     data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?page={0}".format(page_num))
-    response = data.read() 
+    response = data.read()
     return response
 
 def parseHTML(rawData):
@@ -48,22 +50,25 @@ class CFP:
         self.description = ""
         self.icon_url = ""
         self.twitter_id = ""
+        self.detail_url = ""
 
     csvHeader = [
-            'title',
-            'user',
-            'talk_type',
-            'description',
-            'icon_url',
-            'twitter_id']
+        'title',
+        'user',
+        'talk_type',
+        'description',
+        'icon_url',
+        'twitter_id',
+        'detail_url']
 
     def generate_document(self):
-        return {'title':self.title,
-                'user':self.user,
-                'talk_type':self.talk_type,
-                'description':self.description,
-                'icon_url':self.icon_url,
-                'twitter_id':self.twitter_id} 
+        return {'title': self.title,
+                'user': self.user,
+                'talk_type': self.talk_type,
+                'description': self.description,
+                'icon_url': self.icon_url,
+                'twitter_id': self.twitter_id,
+                'detail_url': self.detail_url}
 
     def desc(self):
         print(f"""-------------------------------------------------------------------
@@ -84,13 +89,18 @@ class CFP:
 
 【twitter_id】
 {self.twitter_id}
+
+【detail_url】
+{self.detail_url}
                 """)
 
     @classmethod
     def create(cls, cfpTree):
         cfp = CFP()
         cfp.title = cfpTree.xpath('./h2/a')[0].text
-        
+
+        cfp.detail_url = 'https://fortee.jp' + cfpTree.xpath('./h2/a')[0].get('href')
+
         cfp.talk_type = cfpTree.xpath('./small')[0].text
 
         user_tmp = cfpTree.xpath('.//div[contains(@class,"top20")]/span')[0].text_content()

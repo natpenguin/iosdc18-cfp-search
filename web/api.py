@@ -10,7 +10,7 @@ class Resource(object):
 
         # TODO: 暫定修正
         client = pymongo.MongoClient(host='mongo', port=27017)
-        db = client.iosdc2018_phase_0
+        db = client.iosdc2018_phase_1
         datas = db.cfps.find()
         resp.body = dumps(datas)
         resp.append_header('Access-Control-Allow-Origin', '*')
