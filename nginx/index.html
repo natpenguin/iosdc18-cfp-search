@@ -123,8 +123,10 @@
     </footer>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        var proposalsMaster = [];
-        var searchField = new Vue({
+        let proposalsMaster = [];
+
+        // 検索フィールド
+        const searchField = new Vue({
             el: '#searchField',
             methods: {
                 filter: function(event) {
@@ -144,7 +146,9 @@
                 }
             }
         });
-        var proposalsInstance = new Vue({
+
+        // プロポーザル一覧
+        const proposalsInstance = new Vue({
             el: '#proposals',
             data: {
                 proposals: [],
@@ -156,17 +160,19 @@
                 }
             }
         })
+
+        // プロポーザル一覧を読み込み
         axios.get('/api')
         .then(function (response) {
-            var proposals = [];
+            const proposals = []; // mutable
             response.data.forEach(pros => {
-                let found = proposals.find(element =>
+                const found = proposals.find(element =>
                     element.user == pros.user
                   && element.title == pros.title
                   && element.description == pros.description
                 );
                 if (found) {
-                     var talk_type = found.talk_type + ' / ' + pros.talk_type;
+                     const talk_type = found.talk_type + ' / ' + pros.talk_type;
                      found.talk_type = talk_type.split(' / ').sort().join(' / ');
                 } else {
                     proposals.push(pros);
