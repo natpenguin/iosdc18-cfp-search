@@ -164,13 +164,18 @@
         // プロポーザル一覧を読み込み
         axios.get('/api')
         .then(function (response) {
+
             const proposals = []; // mutable
+
+            // Aggrigate the same talk types
             response.data.forEach(pros => {
+
                 const found = proposals.find(element =>
                     element.user == pros.user
                   && element.title == pros.title
                   && element.description == pros.description
                 );
+
                 if (found) {
                      const talk_type = found.talk_type + ' / ' + pros.talk_type;
                      found.talk_type = talk_type.split(' / ').sort().join(' / ');
@@ -178,6 +183,7 @@
                     proposals.push(pros);
                 }
             });
+
             proposalsMaster = proposals;
             proposalsInstance.proposals = proposals;
         })
