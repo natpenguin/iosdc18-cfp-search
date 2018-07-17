@@ -1,11 +1,19 @@
 #!/bin/bash -eu
 
+BRANCH=`git branch`
+
+if [ "$BRANCH" == 'release' ]; then
+    TAG=`git describe --tags`
+else
+    TAG=`git rev-parse --short HEAD`
+fi
+
 #
 # Build docker images and push to GCR
 #
-./scraper/deploy-docker-image.sh
-./web/deploy-docker-image.sh
-./nginx/deploy-docker-image.sh
+./scraper/deploy-docker-image.sh $TAG
+./web/deploy-docker-image.sh $TAG
+./nginx/deploy-docker-image.sh $TAG
 
 #
 # Apply k8s configurations
@@ -17,12 +25,15 @@ kubectl apply -f ./mongo/mongo-replicaset.yaml
 kubectl apply -f ./mongo/mongo-service.yaml
 
 # scraper
+sed -i '' "s/{{TAG}}/$TAG/" ./scraper/job-scraper.yaml
 kubectl apply -f ./scraper/job-scraper.yaml
 
 # web
+sed -i '' "s/{{TAG}}/$TAG/" ./web/web-deployment.yaml
 kubectl apply -f ./web/web-deployment.yaml
 kubectl apply -f ./web/web-service.yaml
 
 # nginx
+sed -i '' "s/{{TAG}}/$TAG/" ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-service.yaml
