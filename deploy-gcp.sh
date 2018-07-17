@@ -30,10 +30,6 @@ kubectl apply -f ./mongo/mongo-volumeclaim.yaml
 kubectl apply -f ./mongo/mongo-replicaset.yaml
 kubectl apply -f ./mongo/mongo-service.yaml
 
-# scraper
-sed -i '' "s/{{TAG}}/$SCRAPER_TAG/" ./scraper/job-scraper.yaml
-kubectl apply -f ./scraper/job-scraper.yaml
-
 # web
 sed -i '' "s/{{TAG}}/$TAG/" ./web/web-deployment.yaml
 kubectl apply -f ./web/web-deployment.yaml
@@ -43,3 +39,7 @@ kubectl apply -f ./web/web-service.yaml
 sed -i '' "s/{{TAG}}/$TAG/" ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-service.yaml
+
+# scraper
+sed -i '' "s/{{TAG}}/$SCRAPER_TAG/" ./scraper/job-scraper.yaml
+kubectl apply -f ./scraper/job-scraper.yaml
