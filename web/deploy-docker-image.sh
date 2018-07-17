@@ -5,7 +5,7 @@ cd `dirname $0`
 # Dockerイメージをビルドして、GCRにpush
 #
 
-TAG=gcr.io/iosdc-2018-cfp-staging/web:0.1.0
+TAG=gcr.io/iosdc-2018-cfp/web:0.1.0
 
 # build
 docker build -t $TAG .
