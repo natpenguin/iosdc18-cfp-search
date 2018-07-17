@@ -31,7 +31,7 @@ kubectl apply -f ./mongo/mongo-replicaset.yaml
 kubectl apply -f ./mongo/mongo-service.yaml
 
 # scraper
-sed -i '' "s/{{TAG}}/$TAG/" ./scraper/job-scraper.yaml
+sed -i '' "s/{{TAG}}/$SCRAPER_TAG/" ./scraper/job-scraper.yaml
 kubectl apply -f ./scraper/job-scraper.yaml
 
 # web
