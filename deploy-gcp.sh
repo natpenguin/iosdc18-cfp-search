@@ -1,12 +1,18 @@
 #!/bin/bash -eu
 
-BRANCH=`git branch`
+SCRAPER_TAG='0.2.0'
 
-if [ "$BRANCH" == 'release' ]; then
+if [ "`git branch`" == 'release' ]; then
     TAG=`git describe --tags`
 else
-    TAG=`git rev-parse --short HEAD`
+    TAG="`git rev-parse --short HEAD`-stg"
+    SCRAPER_TAG="${SCRAPER_TAG}-stg"
 fi
+
+echo '------------------------------'
+echo "Tag: $TAG"
+echo "Tag(Scraper): $SCRAPER_TAG"
+echo '------------------------------'
 
 #
 # Build docker images and push to GCR
