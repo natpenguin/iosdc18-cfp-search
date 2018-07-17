@@ -1,6 +1,5 @@
 import falcon
 import pymongo
-import cfp_persistence_manager as cpm
 from bson.json_util import dumps
 
 class Resource(object):
