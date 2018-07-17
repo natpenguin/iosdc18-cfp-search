@@ -17,9 +17,9 @@ echo '------------------------------'
 #
 # Build docker images and push to GCR
 #
-./scraper/deploy-docker-image.sh $TAG
 ./web/deploy-docker-image.sh $TAG
 ./nginx/deploy-docker-image.sh $TAG
+./scraper/deploy-docker-image.sh $SCRAPER_TAG
 
 #
 # Apply k8s configurations
