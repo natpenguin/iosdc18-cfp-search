@@ -11,7 +11,11 @@ class Resource(object):
         # TODO: 暫定修正
         client = pymongo.MongoClient(host='mongo', port=27017)
         db = client.iosdc2018_phase_1
-        datas = db.cfps.find()
+        datas = list(db.cfps.find({}, { '_id': False }))
+        for data in datas:
+            data['title'] = data['title'].strip()
+            data['user'] = data['user'].strip()
+            data['description'] = data['description'].strip()
         resp.body = dumps(datas)
         resp.append_header('Access-Control-Allow-Origin', '*')
 

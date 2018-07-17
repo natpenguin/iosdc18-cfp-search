@@ -1,9 +1,8 @@
 FROM nginx:latest
 
-ADD nginx.conf /etc/nginx/nginx.conf
-ADD index.html /www/data/
-ADD 404.html /www/data/
-ADD 50x.html /www/data/
-ADD favicon.ico /www/data/
+ADD nginx.conf  /etc/nginx/nginx.conf
+ADD index.html  /www/data/
+ADD errors      /www/data/errors
+ADD assets      /www/data/assets
 
 CMD ["nginx", "-g", "daemon off;"]
