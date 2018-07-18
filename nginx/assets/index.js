@@ -7,12 +7,13 @@ const searchField = new Vue({
         filter: function(event) {
             let text = event.target.value;
             if (text.length > 0) {
+                let lowerCaseText = text.toLowerCase()
                 let filteredData = proposalsMaster.filter(
                     value => 
-                    value.title.includes(text) || 
-                    value.user.includes(text) ||
-                    value.twitter_id.includes(text) ||
-                    value.talk_type.includes(text)
+                    value.title.toLowerCase().includes(lowerCaseText) || 
+                    value.user.toLowerCase().includes(lowerCaseText) ||
+                    value.twitter_id.toLowerCase().includes(lowerCaseText) ||
+                    value.talk_type.toLowerCase().includes(lowerCaseText)
                 );
                 proposalsInstance.proposals = filteredData;
             } else {
