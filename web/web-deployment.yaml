@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: gcr.io/iosdc-2018-cfp-staging/web:0.1.0
+        image: gcr.io/iosdc-2018-cfp/web:{{TAG}}
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
