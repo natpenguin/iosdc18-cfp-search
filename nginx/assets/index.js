@@ -7,12 +7,13 @@ const searchField = new Vue({
         filter: function(event) {
             let text = event.target.value;
             if (text.length > 0) {
+                let regText = new RegExp(text, 'i')
                 let filteredData = proposalsMaster.filter(
                     value => 
-                    value.title.includes(text) || 
-                    value.user.includes(text) ||
-                    value.twitter_id.includes(text) ||
-                    value.talk_type.includes(text)
+                    regText.test(value.title) ||
+                    regText.test(value.user) ||
+                    regText.test(value.twitter_id) ||
+                    regText.test(value.talk_type)
                 );
                 proposalsInstance.proposals = filteredData;
             } else {
