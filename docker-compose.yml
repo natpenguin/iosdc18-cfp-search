@@ -8,6 +8,10 @@ services:
       - web
     volumes:
       - "./nginx:/www/data/"
+    entrypoint:
+      - bash
+      - -c
+      - "sed -i 's/resolver kube-dns.kube-system.svc.cluster.local;//' /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
   web:
     build: ./web
     ports:
