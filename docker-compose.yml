@@ -16,6 +16,14 @@ services:
       - CFP_MONGO_HOST=mongo
     depends_on:
       - mongo
+    volumes:
+      - "./web:/usr/src/app"
+    entrypoint:
+      - gunicorn
+      - api:app
+      - -b
+      - 0.0.0.0:8000
+      - --reload
   mongo:
     image: mongo
     volumes:
