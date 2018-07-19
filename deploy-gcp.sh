@@ -19,7 +19,6 @@ echo '------------------------------'
 #
 ./web/deploy-docker-image.sh $TAG
 ./nginx/deploy-docker-image.sh $TAG
-./scraper/deploy-docker-image.sh $SCRAPER_TAG
 
 #
 # Apply k8s configurations
@@ -39,7 +38,3 @@ kubectl apply -f ./web/web-service.yaml
 sed -i "s/{{TAG}}/$TAG/" ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-service.yaml
-
-# scraper
-sed -i "s/{{TAG}}/$SCRAPER_TAG/" ./scraper/job-scraper.yaml
-kubectl apply -f ./scraper/job-scraper.yaml
