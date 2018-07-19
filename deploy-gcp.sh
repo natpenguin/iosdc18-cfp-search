@@ -2,7 +2,7 @@
 
 SCRAPER_TAG='0.2.0'
 
-if [ "`git branch`" == 'release' ]; then
+if [ "`git rev-parse --abbrev-ref HEAD`" == 'release' ]; then
     TAG=`git describe --tags`
 else
     TAG="`git rev-parse --short HEAD`-stg"
