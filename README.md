@@ -47,7 +47,8 @@ docker-compose up
     "talk_type": String,
     "description": String,
     "icon_url": String,
-    "twitter_id": String
+    "twitter_id": String,
+    "detail_url": String
     }]
   ```
 
