@@ -6,6 +6,8 @@ services:
       - "80:80"
     depends_on:
       - web
+    volumes:
+      - "./nginx:/www/data/"
   web:
     build: ./web
     ports:
