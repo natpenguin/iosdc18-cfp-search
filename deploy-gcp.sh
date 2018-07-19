@@ -1,8 +1,10 @@
 #!/bin/bash -eu
 
 if [ "`git rev-parse --abbrev-ref HEAD`" == 'release' ]; then
+    echo "Start deploy to [Production]"
     TAG=`git describe --tags`
 else
+    echo "Start deploy to [Staging]"
     TAG="`git rev-parse --short HEAD`-stg"
 fi
 
