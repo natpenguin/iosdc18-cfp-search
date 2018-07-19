@@ -24,6 +24,9 @@ $ pep8 target.py
 ```bash
 docker-compose up
 ```
+
+Hot-reload is enabled on default, so you don't need restart containers in most case.
+
 ## Environment variable
 * Host of MongoDB  
  `"CFP_MONGO_HOST"`
