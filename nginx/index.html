@@ -76,27 +76,29 @@
             <template v-show="isLoaded">
                 <!-- https://bulma.io/documentation/components/card/ -->
                 <div v-for="proposal in proposals">
-                    <section class="section is-small">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <figure class="image is-48x48">
-                                            <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
-                                        </figure>
+                    <a href="proposal.detail_url">
+                        <section class="section is-small">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <figure class="image is-48x48">
+                                                <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
+                                            </figure>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-4">{{ proposal.title }}</p>
+                                            <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                        </div>
                                     </div>
-                                    <div class="media-content">
-                                        <p class="title is-4">{{ proposal.title }}</p>
-                                        <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                    <div class="content">
+                                        <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
                                     </div>
+                                    <span class="small">{{ proposal.talk_type }}</span>
                                 </div>
-                                <div class="content">
-                                    <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
-                                </div>
-                                <span class="small">{{ proposal.talk_type }}</span>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </a>
                 </div>
             </template>
             <template v-if="isLoaded === false">
