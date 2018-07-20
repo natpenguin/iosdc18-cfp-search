@@ -75,7 +75,6 @@
         <div id="proposals">
             <template v-show="isLoaded">
                 <!-- https://bulma.io/documentation/components/card/ -->
-                <!-- if you want to add a new <a> , you have to add insidelink as class because href doesn't work -->
                 <div v-for="proposal in proposals">
                     <section class="section is-small">
                         <div class="card">
@@ -90,7 +89,7 @@
                                         <p class="title is-4">
                                             <a :href="proposal.detail_url">{{ proposal.title }}</a>
                                         </p>
-                                        <p class="subtitle is-6">{{ proposal.user }} / <a class="insidelink" :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                        <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                     </div>
                                 </div>
                                 <div class="content">
