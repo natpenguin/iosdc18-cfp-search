@@ -14,6 +14,22 @@
     .section {
         padding: 1.0rem 1.5rem;
     }
+    .hreferable {
+        position: relative;
+    }
+    .hreferable > a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-indent: -999px;
+        z-index: 1;
+    }
+    .hreferable a.insidelink {
+        position: relative;
+        z-index: 2;
+    }
     </style>
 </head>
 <body>
@@ -75,30 +91,30 @@
         <div id="proposals">
             <template v-show="isLoaded">
                 <!-- https://bulma.io/documentation/components/card/ -->
+                <!-- if you want to add a new <a> , you have to add insidelink as class because href doesn't work -->
                 <div v-for="proposal in proposals">
-                    <a href="proposal.detail_url">
-                        <section class="section is-small">
-                            <div class="card">
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <figure class="image is-48x48">
-                                                <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="media-content">
-                                            <p class="title is-4">{{ proposal.title }}</p>
-                                            <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
-                                        </div>
+                    <section class="section is-small hreferable">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
+                                        </figure>
                                     </div>
-                                    <div class="content">
-                                        <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
+                                    <div class="media-content">
+                                        <p class="title is-4">{{ proposal.title }}</p>
+                                        <p class="subtitle is-6">{{ proposal.user }} / <a class="insidelink" :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                     </div>
-                                    <span class="small">{{ proposal.talk_type }}</span>
                                 </div>
+                                <div class="content">
+                                    <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
+                                </div>
+                                <span class="small">{{ proposal.talk_type }}</span>
                             </div>
-                        </section>
-                    </a>
+                        </div>
+                        <a :href="proposal.detail_url"></a>
+                    </section>
                 </div>
             </template>
             <template v-if="isLoaded === false">
