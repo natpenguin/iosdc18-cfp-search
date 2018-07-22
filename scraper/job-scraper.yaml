@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: scraper-phase1
+  name: scraper-phase2
   labels:
     chapter: jobs
 spec:
@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
         - name: scraper
-          image: gcr.io/iosdc-2018-cfp/scraper:0.2.0
+          image: gcr.io/iosdc-2018-cfp/scraper:0.3.0
           imagePullPolicy: Always
       restartPolicy: OnFailure

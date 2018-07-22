@@ -6,6 +6,7 @@ from lxml import html
 import csv
 import re
 import cfp_persistence_manager as cpm
+import datetime
 
 def main():
     cfps = []
@@ -51,7 +52,7 @@ class CFP:
         self.icon_url = ""
         self.twitter_id = ""
         self.detail_url = ""
-        self.talk_date = ""
+        self.talk_date = None
         self.talk_site = ""
         self.is_adopted = False 
 
@@ -141,7 +142,8 @@ class CFP:
             cfp.is_adopted = True
             tmp_type_tree = cfpTree.xpath('.//div[contains(@class,"type")]')[0] 
             tmp_schedule = tmp_type_tree.xpath('./span[contains(@class,"schedules")]')[0]
-            cfp.talk_date = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
+            tmpDate = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
+            cfp.talk_date = datetime.datetime.strptime(tmpDate, '%Y/%m/%d %H:%M〜')
             cfp.talk_site = tmp_schedule.xpath('./span[contains(@class,"track")]')[0].text
         cfp.desc()
         return cfp
