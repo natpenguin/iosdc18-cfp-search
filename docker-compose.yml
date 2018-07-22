@@ -6,6 +6,12 @@ services:
       - "80:80"
     depends_on:
       - web
+    volumes:
+      - "./nginx:/www/data/"
+    entrypoint:
+      - bash
+      - -c
+      - "sed -i 's/resolver kube-dns.kube-system.svc.cluster.local;//' /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
   web:
     build: ./web
     ports:
@@ -14,6 +20,14 @@ services:
       - CFP_MONGO_HOST=mongo
     depends_on:
       - mongo
+    volumes:
+      - "./web:/usr/src/app"
+    entrypoint:
+      - gunicorn
+      - api:app
+      - -b
+      - 0.0.0.0:8000
+      - --reload
   mongo:
     image: mongo
     volumes:
@@ -24,5 +38,6 @@ services:
     image: mongo-express
     ports:
       - "8081:8081"
+    restart: always
     depends_on:
       - mongo

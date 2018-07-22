@@ -15,6 +15,15 @@
         padding: 1.0rem 1.5rem;
     }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122724032-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122724032-1');
+    </script>
 </head>
 <body>
     <section class="hero is-info">
@@ -86,7 +95,9 @@
                                         </figure>
                                     </div>
                                     <div class="media-content">
-                                        <p class="title is-4">{{ proposal.title }}</p>
+                                        <p class="title is-4">
+                                            <a :href="proposal.detail_url">{{ proposal.title }}</a>
+                                        </p>
                                         <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                     </div>
                                 </div>

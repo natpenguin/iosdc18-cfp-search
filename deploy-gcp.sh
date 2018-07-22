@@ -1,17 +1,15 @@
 #!/bin/bash -eu
 
-SCRAPER_TAG='0.2.0'
-
-if [ "`git branch`" == 'release' ]; then
+if [ "`git rev-parse --abbrev-ref HEAD`" == 'release' ]; then
+    echo "Start deploy to [Production]"
     TAG=`git describe --tags`
 else
+    echo "Start deploy to [Staging]"
     TAG="`git rev-parse --short HEAD`-stg"
-    SCRAPER_TAG="${SCRAPER_TAG}-stg"
 fi
 
 echo '------------------------------'
 echo "Tag: $TAG"
-echo "Tag(Scraper): $SCRAPER_TAG"
 echo '------------------------------'
 
 #

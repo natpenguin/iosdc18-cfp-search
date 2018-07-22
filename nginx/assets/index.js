@@ -7,7 +7,7 @@ const searchField = new Vue({
         filter: function(event) {
             let text = event.target.value;
             if (text.length > 0) {
-                let regText = new RegExp(text, 'i')
+                let regText = new RegExp(text.trim(), 'i')
                 let filteredData = proposalsMaster.filter(
                     value => 
                     regText.test(value.title) ||
