@@ -28,9 +28,7 @@ const proposalsInstance = new Vue({
     el: '#proposals',
     data: {
         proposals: [],
-        isLoaded: false,
-        // TODO: test code (this code have to be removed after finishing AB test)
-        isA: false
+        isLoaded: false
     },
     methods: {
         loaded: function(event) {
@@ -64,7 +62,4 @@ axios.get('/api')
 
     proposalsMaster = proposals;
     proposalsInstance.proposals = proposals;
-
-    // TODO: test code
-    proposalsInstance.isA = Math.random() > 0.5;
 })

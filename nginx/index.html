@@ -16,6 +16,7 @@
         padding: 1.0rem 1.5rem;
     }
     span.tag.cfp_adopted {
+        color: #ffffff;
         background-color: #f44336;
     }
     </style>
@@ -100,9 +101,7 @@
                                     </div>
                                     <div class="media-content">
                                         <p class="title is-4">
-                                            <!-- TODO: design test -->
-                                            <span v-if="proposal.is_adopted && isA" class="tag is-success">採択</span>
-                                            <span v-if="proposal.is_adopted && !isA" class="tag is-primary cfp_adopted">採択</span>
+                                            <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
                                             <a :href="proposal.detail_url">{{ proposal.title }}</a>
                                         </p>
                                         <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
