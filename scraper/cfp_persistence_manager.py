@@ -24,7 +24,7 @@ class cfp_mongo:
         port = int(os.getenv("CFP_MONGO_PORT", "27017"))
         # mongodb へのアクセスを確立
         self.client = pymongo.MongoClient(host, port)
-        self.database = self.client.iosdc2018_phase_1
+        self.database = self.client.iosdc2018_phase_2
         self.collection = self.database.cfps
 
     def drop(self):
