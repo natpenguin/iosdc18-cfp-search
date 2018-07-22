@@ -52,7 +52,7 @@ Hot-reload is enabled on default, so you don't need restart containers in most c
     "icon_url": String,
     "twitter_id": String,
     "detail_url": String,
-    'talk_date': String,
+    'talk_date': ISODate,
     'talk_site': String,
     'is_adopted': Bool
     }]
