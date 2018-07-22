@@ -9,7 +9,7 @@ class Resource(object):
 
         # TODO: 暫定修正
         client = pymongo.MongoClient(host='mongo', port=27017)
-        db = client.iosdc2018_phase_1
+        db = client.iosdc2018_phase_2
         datas = list(db.cfps.find({}, { '_id': False }))
         for data in datas:
             data['title'] = data['title'].strip()
