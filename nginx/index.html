@@ -45,14 +45,21 @@
     </section>    
     <div class="container">
         <div class="section is-small">
-            <!-- キーワード検索 -->
-            <div id="searchField" class="field is-horizontal">
-                <p class="control has-icons-left">
-                    <input v-on:input="filter" class="input" type="text" placeholder="検索ワード">
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </p>
+            <div id="searchCondition" class="field is-grouped">
+                <!-- キーワード検索 -->
+                <div class="control field is-horizontal">
+                    <p class="control has-icons-left">
+                        <input v-model="searchWord" class="input" type="text" placeholder="検索ワード">
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </p>
+                </div>
+                <!-- 採択チェックボックス -->
+                <label class="control checkbox">
+                    <input v-model="isAdopt" type="checkbox">
+                    採択されたトーク
+                </label>
             </div>
         <!--
             <div class="field is-grouped">
