@@ -28,7 +28,7 @@ def fetchPageData(page_num):
 
 def parseHTML(rawData):
     rootTree = html.fromstring(rawData)
-    cfpsTree  = rootTree.xpath('//div[@class="list-proposal"]')
+    cfpsTree  = rootTree.xpath('//div[contains(@class,"list-proposal")]')
     cfps = []
     for cfpTree in cfpsTree:
         cfp = CFP.create(cfpTree) 
@@ -43,7 +43,7 @@ def save_csv(cfps):
 
 
 class CFP:
-    def __init(self):
+    def __init__(self):
         self.title = ""
         self.user = ""
         self.talk_type = ""
@@ -51,6 +51,9 @@ class CFP:
         self.icon_url = ""
         self.twitter_id = ""
         self.detail_url = ""
+        self.talk_date = ""
+        self.talk_site = ""
+        self.is_adopted = False 
 
     csvHeader = [
         'title',
@@ -59,7 +62,11 @@ class CFP:
         'description',
         'icon_url',
         'twitter_id',
-        'detail_url']
+        'detail_url',
+        'talk_date',
+        'talk_site',
+        'is_adopted'
+        ]
 
     def generate_document(self):
         return {'title': self.title,
@@ -68,7 +75,11 @@ class CFP:
                 'description': self.description,
                 'icon_url': self.icon_url,
                 'twitter_id': self.twitter_id,
-                'detail_url': self.detail_url}
+                'detail_url': self.detail_url,
+                'talk_date': self.talk_date,
+                'talk_site': self.talk_site,
+                'is_adopted': self.is_adopted
+                }
 
     def desc(self):
         print(f"""-------------------------------------------------------------------
@@ -92,6 +103,15 @@ class CFP:
 
 【detail_url】
 {self.detail_url}
+
+【talk_date】
+{self.talk_date}
+
+【talk_site】
+{self.talk_site}
+
+【is_adopted】
+{self.is_adopted}
                 """)
 
     @classmethod
@@ -101,12 +121,12 @@ class CFP:
 
         cfp.detail_url = 'https://fortee.jp' + cfpTree.xpath('./h2/a')[0].get('href')
 
-        cfp.talk_type = cfpTree.xpath('./small')[0].text
+        cfp.talk_type = cfpTree.xpath('.//span[contains(@class, "name")]')[0].text
 
-        user_tmp = cfpTree.xpath('.//div[contains(@class,"top20")]/span')[0].text_content()
+        user_tmp = cfpTree.xpath('.//div[contains(@class,"speaker")]/span')[0].text_content()
         cfp.user = re.sub(r'^(\s|\t|　)+', "", user_tmp)
 
-        description_temp = cfpTree.xpath('./div[contains(@class,"top40")]')[0].text_content() 
+        description_temp = cfpTree.xpath('./div[contains(@class,"abstract")]')[0].text_content() 
         cfp.description = re.sub(r'^(\s|\t|　)+', "", description_temp)
 
         icon_url_tree = cfpTree.xpath('.//span/img[contains(@class,"inline-avatar")]')
@@ -116,6 +136,13 @@ class CFP:
             cfp.icon_url = ''
 
         cfp.twitter_id = cfpTree.xpath('.//span[contains(@class,"left20")]/a')[0].text 
+
+        if len(cfpTree.xpath('.//div[contains(@class,"type")]/span[contains(@class, "tags")]')) > 0:
+            cfp.is_adopted = True
+            tmp_type_tree = cfpTree.xpath('.//div[contains(@class,"type")]')[0] 
+            tmp_schedule = tmp_type_tree.xpath('./span[contains(@class,"schedules")]')[0]
+            cfp.talk_date = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
+            cfp.talk_site = tmp_schedule.xpath('./span[contains(@class,"track")]')[0].text
         cfp.desc()
         return cfp
 
