@@ -73,6 +73,9 @@ axios.get('/api')
         if (found) {
              const talk_type = found.talk_type + ' / ' + pros.talk_type;
              found.talk_type = talk_type.split(' / ').sort().join(' / ');
+             if (pros.is_adopted) {
+                found.is_adopted = true;
+             }
         } else {
             proposals.push(pros);
         }
