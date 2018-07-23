@@ -74,7 +74,9 @@ axios.get('/api')
              const talk_type = found.talk_type + ' / ' + pros.talk_type;
              found.talk_type = talk_type.split(' / ').sort().join(' / ');
              if (pros.is_adopted) {
-                found.is_adopted = true;
+                found.is_adopted  = pros.is_adopted;
+                found.description = pros.description;
+                found.detail_url  = pros.detail_url;
              }
         } else {
             proposals.push(pros);
