@@ -15,6 +15,10 @@
     .section {
         padding: 1.0rem 1.5rem;
     }
+    span.tag.cfp_adopted {
+        color: #ffffff;
+        background-color: #f44336;
+    }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122724032-1"></script>
@@ -41,14 +45,21 @@
     </section>    
     <div class="container">
         <div class="section is-small">
-            <!-- キーワード検索 -->
-            <div id="searchField" class="field is-horizontal">
-                <p class="control has-icons-left">
-                    <input v-on:input="filter" class="input" type="text" placeholder="検索ワード">
-                        <span class="icon is-small is-left">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </p>
+            <div id="searchCondition" class="field is-grouped is-grouped-multiline">
+                <!-- キーワード検索 -->
+                <div class="control field is-horizontal">
+                    <p class="control has-icons-left">
+                        <input v-model="searchWord" class="input" type="text" placeholder="検索ワード">
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </p>
+                </div>
+                <!-- 採択チェックボックス -->
+                <label class="control checkbox">
+                    <input v-model="isAdopt" type="checkbox">
+                    採択されたトークのみを表示
+                </label>
             </div>
         <!--
             <div class="field is-grouped">
@@ -97,7 +108,8 @@
                                     </div>
                                     <div class="media-content">
                                         <p class="title is-4">
-                                            <a :href="proposal.detail_url">{{ proposal.title }}</a>
+                                            <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
+                                            <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>
                                         </p>
                                         <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                     </div>
