@@ -94,8 +94,8 @@
         </div>
         <!-- プロポーザル一覧 -->
         <div id="proposals">
-            <template v-show="isLoaded">
-                <!-- https://bulma.io/documentation/components/card/ -->
+            <!-- 一覧 -->
+            <template v-if="proposals">
                 <div v-for="proposal in proposals">
                     <section class="section is-small">
                         <div class="card">
@@ -103,7 +103,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <figure class="image is-48x48">
-                                            <img v-show="isLoaded" :src="proposal.icon_url" @load="loaded" alt="">
+                                            <img :src="proposal.icon_url" alt="">
                                         </figure>
                                     </div>
                                     <div class="media-content">
@@ -123,14 +123,15 @@
                     </section>
                 </div>
             </template>
-            <template v-if="isLoaded === false">
+            <!-- 読み込み中 -->
+            <template v-else>
                 <section class="section is-small">
                     <div class="icon">
                         <i class="fas fa-spinner fa-pulse fa-2x"></i>
                     </div>
                     <p class="is-large">Now loading ...</p>
                 </section>
-            </template>   
+            </template>
         </div>
     </div>
     <footer class="footer">
@@ -139,7 +140,7 @@
                 <strong>Powerd</strong> by <a href="http://blog.penginmura.tech/">ペンギン村 Tech</a>.
             </p>
             <p>
-                ペンギン村 Tech is believe in  <a href="https://iosdc.jp/2018/">iOSDC 2018</a>.
+                ペンギン村 Tech is believe in <a href="https://iosdc.jp/2018/">iOSDC 2018</a>.
             </p>
         </div>
     </footer>

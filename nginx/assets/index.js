@@ -45,13 +45,7 @@ const searchField = new Vue({
 const proposalsInstance = new Vue({
     el: '#proposals',
     data: {
-        proposals: [],
-        isLoaded: false
-    },
-    methods: {
-        loaded: function(event) {
-            this.isLoaded = true;
-        }
+        proposals: undefined
     }
 })
 
