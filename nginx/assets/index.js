@@ -5,16 +5,19 @@ const searchField = new Vue({
     el: '#searchCondition',
     data: {
         searchWord: '',
-        isAdopt: false
+        isAdopt: true,
+        isNotAdopt: true
     },
     watch: {
         searchWord: 'filter',
-        isAdopt: 'filter'
+        isAdopt: 'filter',
+        isNotAdopt: 'filter'
     },
     methods: {
         filter: function(event) {
             let text = this.searchWord;
             let isAdoptValue = this.isAdopt;
+            let isNotAdoptValue = this.isNotAdopt;
             let isKeywordMatch = function(value) {
                 if (text.length > 0) {
                     let regText = new RegExp(text.trim(), 'i')
@@ -30,11 +33,19 @@ const searchField = new Vue({
                 if (isAdoptValue) {
                     return value.is_adopted === true;
                 } else {
-                    return true;
+                    return false;
+                }
+            };
+            let isNotAdopted = function(value) {
+                if (isNotAdoptValue) {
+                    return value.is_adopted === false;
+                } else {
+                    return false;
                 }
             };
             let filteredData = proposalsMaster.filter(value =>
-                isKeywordMatch(value) && isAdopted(value)
+                isKeywordMatch(value)
+                    && (isAdopted(value) || isNotAdopted(value))
             );
             proposalsInstance.proposals = filteredData;
         }
