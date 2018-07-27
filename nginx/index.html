@@ -46,6 +46,18 @@
     <div class="container">
         <div class="section is-small">
             <div id="searchCondition" class="field is-grouped is-grouped-multiline">
+                <!-- 採択 -->
+                <div class="control buttons has-addons">
+                    <span
+                        v-on:click="isAdopt=true; isNotAdopt=true;"
+                        v-bind:class="{ 'is-selected is-link': isAdopt && isNotAdopt }" class="button">すべて</span>
+                    <span
+                        v-on:click="isAdopt=true;  isNotAdopt=false;"
+                        v-bind:class="{ 'is-selected is-danger': isAdopt && !isNotAdopt }" class="button">採択</span>
+                    <span
+                        v-on:click="isAdopt=false; isNotAdopt=true;"
+                        v-bind:class="{ 'is-selected is-info': !isAdopt && isNotAdopt }" class="button">非採択</span>
+                </div>
                 <!-- キーワード検索 -->
                 <div class="control field is-horizontal">
                     <p class="control has-icons-left">
@@ -55,11 +67,6 @@
                         </span>
                     </p>
                 </div>
-                <!-- 採択チェックボックス -->
-                <label class="control checkbox">
-                    <input v-model="isAdopt" type="checkbox">
-                    採択されたトークのみを表示
-                </label>
             </div>
         <!--
             <div class="field is-grouped">
