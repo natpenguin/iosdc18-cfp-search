@@ -17,4 +17,4 @@ IMAGE=gcr.io/iosdc-2018-cfp/scraper:$TAG
 docker build -t $IMAGE .
 
 # push
-gcloud docker -- push $IMAGE
+docker push $IMAGE
