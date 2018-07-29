@@ -1,0 +1,19 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: iosdc-cfps-penginmura-tech
+  namespace: default
+spec:
+  secretName: cert-manager-tls
+  issuerRef:
+    name: letsencrypt-prod
+  commonName: penginmura.tech
+  dnsNames:
+  - iosdc-cfps.penginmura.tech
+  acme:
+    config:
+    - dns01:
+        provider: prod-dns
+      domains:
+      - penginmura.tech
+      - iosdc-cfps.penginmura.tech
