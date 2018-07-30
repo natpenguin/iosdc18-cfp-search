@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-if [ "$(uname)" != 'Darwin' ]; then
+if [ "$(uname)" == 'Darwin' ]; then
     SED_I=(sed -i '.bak')
 else
     SED_I=(sed -i)
