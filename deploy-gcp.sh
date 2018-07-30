@@ -3,9 +3,11 @@
 if [ "`git rev-parse --abbrev-ref HEAD`" == 'release' ]; then
     echo "Start deploy to [Production]"
     TAG=`git describe --tags`
+    NGINX_SERVICE_TYPE='NodePort'
 else
     echo "Start deploy to [Staging]"
     TAG="`git rev-parse --short HEAD`-stg"
+    NGINX_SERVICE_TYPE='LoadBalancer'
 fi
 
 echo '------------------------------'
@@ -34,5 +36,6 @@ kubectl apply -f ./web/web-service.yaml
 
 # nginx
 sed -i "s/{{TAG}}/$TAG/" ./nginx/nginx-deployment.yaml
+sed -i "s/{{TYPE}}/$NGINX_SERVICE_TYPE/" ./nginx/nginx-service.yaml
 kubectl apply -f ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-service.yaml
