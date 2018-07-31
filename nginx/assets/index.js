@@ -75,6 +75,8 @@ axios.get('/api')
          && element.description == pros.description
         );
 
+        pros.orecon_form_url = "https://docs.google.com/forms/d/e/1FAIpQLSfFaoVGH__Ck-CzdnH83ZC_1PlFewXsJmoEe68mhrNfeRLA4w/viewform?entry.1898580758=" + pros.detail_url;
+
         if (found) {
              const talk_type = found.talk_type + ' / ' + pros.talk_type;
              found.talk_type = talk_type.split(' / ').sort().join(' / ');
@@ -82,6 +84,7 @@ axios.get('/api')
                 found.is_adopted  = pros.is_adopted;
                 found.description = pros.description;
                 found.detail_url  = pros.detail_url;
+                found.orecon_form_url = pros.orecon_form_url; 
              }
         } else {
             proposals.push(pros);
