@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "nginx-ip"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  tls:
+  - secretName: cert-manager-tls
+    hosts:
+      - iosdc-cfps.penginmura.tech
+  backend:
+    serviceName: nginx
+    servicePort: 80
