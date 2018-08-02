@@ -38,108 +38,157 @@
                     この素晴らしいCfPに祝福を！
                 </h1>
                 <h2 class="subtitle">
-                    iOSDC 2018 応援サイト / プロポーザル（CfP）一覧の閲覧・検索
+                    iOSDC 2018 応援サイト / ペンギン村 Tech presents.
                 </h2>
             </div>
         </div>
-    </section>    
-    <div class="container">
-        <div class="section is-small">
-            <div id="searchCondition" class="field is-grouped is-grouped-multiline">
-                <!-- 採択 -->
-                <div class="control buttons has-addons">
-                    <span
-                        v-on:click="isAdopt=true; isNotAdopt=true;"
-                        v-bind:class="{ 'is-selected is-link': isAdopt && isNotAdopt }" class="button">すべて</span>
-                    <span
-                        v-on:click="isAdopt=true;  isNotAdopt=false;"
-                        v-bind:class="{ 'is-selected is-danger': isAdopt && !isNotAdopt }" class="button">採択</span>
-                    <span
-                        v-on:click="isAdopt=false; isNotAdopt=true;"
-                        v-bind:class="{ 'is-selected is-info': !isAdopt && isNotAdopt }" class="button">非採択</span>
-                </div>
-                <!-- キーワード検索 -->
-                <div class="control field is-horizontal">
-                    <p class="control has-icons-left">
-                        <input v-model="searchWord" class="input" type="text" placeholder="検索ワード">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-search"></i>
-                        </span>
+    </section>
+    <div class="columns is-desktop">
+        <!-- 左カラム -->
+        <div class="column">
+            <div class="section">
+                <!-- メニュー -->
+                <aside class="menu">
+                    <p class="menu-label">
+                    Official
                     </p>
-                </div>
+                    <ul class="menu-list">
+                        <li><a href="https://iosdc.jp/2018/" target="_blank">iOSDC Japan 2018</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Informal
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <span>俺コン 2018 Summer</span>
+                            <ul>
+                                <li><a href="https://orecon.connpass.com/event/94858/" target="_blank">Day. 1</a></li>
+                                <li><a href="https://orecon.connpass.com/event/94867/" target="_blank">Day. 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li>
+                            <span>iOSDC 2018 Reject Conference</span>
+                            <ul>
+                                <li><a href="https://iosdc-reject-conference.connpass.com/event/93314/" target="_blank">days1</a></li>
+                                <li><a href="https://iosdc-reject-conference.connpass.com/event/93315/" target="_blank">days2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        Developer
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="http://blog.penginmura.tech/" target="_blank">ペンギン村 Tech Blog</a></li>
+                    </ul>    
+                </aside>
             </div>
-        <!--
-            <div class="field is-grouped">
-                <p class="control">
-                    <a class="button is-primary">
-                        15分トーク
-                    </a>
-                </p>
-                <p class="control">
-                    <a class="button is-light">
-                        30分トーク
-                    </a>
-                </p>
-                <p class="control">
-                    <a class="button is-light">
-                        LT
-                    </a>
-                </p>
-                <p class="control">
-                    <a class="button is-light">
-                        iOSDCルーキーズ LT
-                    </a>
-                </p>
-                <p class="control">
-                    <a class="button is-light">
-                        iOSエンジニアに聞いて欲しいトーク
-                    </a>
-                </p>
+            <!-- はてぶ -->
+            <div class="section">
+                <a href="http://b.hatena.ne.jp/entry/iosdc-cfps.penginmura.tech/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
             </div>
-        -->
-            <a href="http://b.hatena.ne.jp/entry/iosdc-cfps.penginmura.tech/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
         </div>
-        <!-- プロポーザル一覧 -->
-        <div id="proposals">
-            <!-- 一覧 -->
-            <template v-if="proposals">
-                <div v-for="proposal in proposals">
-                    <section class="section is-small">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <figure class="image is-48x48">
-                                            <img :src="proposal.icon_url" alt="">
-                                        </figure>
-                                    </div>
-                                    <div class="media-content">
-                                        <p class="title is-4">
-                                            <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
-                                            <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
-                                            <a v-if="proposal.is_adopted === false" :href="proposal.orecon_form_url" target="_blank" class="button is-small is-warning">俺コンで聞きたい！</a>
-                                        </p>
-                                        <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
-                                    </div>
-                                </div>
-                                <div class="content">
-                                    <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
-                                </div>
-                                <span class="small">{{ proposal.talk_type }}</span>
-                            </div>
+        <!-- コンテンツ -->
+        <div class="column">
+            <div class="container">
+                <div class="section is-small">
+                    <div id="searchCondition" class="field is-grouped is-grouped-multiline">
+                        <!-- 採択 -->
+                        <div class="control buttons has-addons">
+                            <span
+                                v-on:click="isAdopt=true; isNotAdopt=true;"
+                                v-bind:class="{ 'is-selected is-link': isAdopt && isNotAdopt }" class="button">すべて</span>
+                            <span
+                                v-on:click="isAdopt=true;  isNotAdopt=false;"
+                                v-bind:class="{ 'is-selected is-danger': isAdopt && !isNotAdopt }" class="button">採択</span>
+                            <span
+                                v-on:click="isAdopt=false; isNotAdopt=true;"
+                                v-bind:class="{ 'is-selected is-info': !isAdopt && isNotAdopt }" class="button">非採択</span>
                         </div>
-                    </section>
-                </div>
-            </template>
-            <!-- 読み込み中 -->
-            <template v-else>
-                <section class="section is-small">
-                    <div class="icon">
-                        <i class="fas fa-spinner fa-pulse fa-2x"></i>
+                        <!-- キーワード検索 -->
+                        <div class="control field is-horizontal">
+                            <p class="control has-icons-left">
+                                <input v-model="searchWord" class="input" type="text" placeholder="検索ワード">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </p>
+                        </div>
                     </div>
-                    <p class="is-large">Now loading ...</p>
-                </section>
-            </template>
+                <!--
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button is-primary">
+                                15分トーク
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-light">
+                                30分トーク
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-light">
+                                LT
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-light">
+                                iOSDCルーキーズ LT
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-light">
+                                iOSエンジニアに聞いて欲しいトーク
+                            </a>
+                        </p>
+                    </div>
+                -->
+                </div>
+                <!-- プロポーザル一覧 -->
+                <div id="proposals">
+                    <!-- 一覧 -->
+                    <template v-if="proposals">
+                        <div v-for="proposal in proposals">
+                            <section class="section is-small">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <figure class="image is-48x48">
+                                                    <img :src="proposal.icon_url" alt="">
+                                                </figure>
+                                            </div>
+                                            <div class="media-content">
+                                                <p class="title is-5">
+                                                    <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
+                                                    <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
+                                                    <a v-if="proposal.is_adopted === false" :href="proposal.orecon_form_url" target="_blank" class="button is-small is-warning">俺コンで聞きたい！</a>
+                                                </p>
+                                                <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
+                                        </div>
+                                        <span class="small">{{ proposal.talk_type }}</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </template>
+                    <!-- 読み込み中 -->
+                    <template v-else>
+                        <section class="section is-small">
+                            <div class="icon">
+                                <i class="fas fa-spinner fa-pulse fa-2x"></i>
+                            </div>
+                            <p class="is-large">Now loading ...</p>
+                        </section>
+                    </template>
+                </div>
+            </div>        
         </div>
     </div>
     <footer class="footer">
