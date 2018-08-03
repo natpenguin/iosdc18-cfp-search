@@ -1,0 +1,16 @@
+db.cfps.update({title: 'デザイナーと一緒にコラボして仕上げるアニメーション実装とショーケース紹介'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'DDD(ドメイン駆動設計)を知っていますか？？'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'UITesting with GraphQL'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'Factoryの自動生成によりテストを書きやすくする'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'Metalによる素材を活かしたUI作り'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: '退屈なことはApp Store Connect APIにやらせよう'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'エンジニア経験を活かしたスクラムマスターとして開発チームとプロダクトを成長させる'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'RxSwfitを採用したプロジェクトにおけるテストパターン'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'Twitterのプロフィール画面の再実装を通して、ScrollViewを組み合わせたContainerVCの作り方を学ぶ'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'ジェネリクスを使ったプロフィール画面の構築'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'Manual DI with ReactorKit'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: '非同期UI描画による高速なアプリケーションの実装'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'Self-Documenting Code のススメ方'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'Flutter触りまくったからその知見を公開する'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: 'iOSアプリのUniversal対応をやめようとした話'}, {$set:{is_adopted_rejectcon:true}});
+db.cfps.update({title: '「開発初心者は何がわからないのか」わからないを言語化するヒント'}, {$set:{is_adopted_rejectcon:true}});
