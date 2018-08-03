@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: patch-rejectcon
+  labels:
+    chapter: jobs
+spec:
+  template:
+    metadata:
+      labels:
+        chapter: jobs
+    spec:
+      containers:
+        - name: scraper
+          image: gcr.io/iosdc-2018-cfp/scraper-patch-rejectcon:0.0.1
+          imagePullPolicy: Always
+      restartPolicy: OnFailure
