@@ -158,7 +158,7 @@
                                             <div class="media-content">
                                                 <p class="title is-5">
                                                     <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
-                                                    <span v-show="proposal.is_adopted_rejectcon" class="tag is-primary">RejectConf</span>
+                                                    <span v-show="proposal.is_adopted_rejectcon" class="tag is-primary">Reject Conf</span>
                                                     <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
                                                     <a v-if="proposal.is_adopted === false && !proposal.is_adopted_rejectcon"
                                                         :href="proposal.orecon_form_url" target="_blank" class="button is-small is-warning">
