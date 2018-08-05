@@ -31,7 +31,18 @@
     </script>
 </head>
 <body>
-    <section class="hero is-info">
+    <section class="hero is-small is-info is-bold">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="https://iosdc.jp/2018/" target="_blank">
+                            <img src="/assets/iOSDC_3.png">
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
@@ -47,7 +58,7 @@
         <div class="columns">
             <!-- 左カラム -->
             <div class="column is-3">
-                <div class="section">
+                <div class="section">            
                     <!-- メニュー -->
                     <aside class="menu">
                         <p class="menu-label">
@@ -98,14 +109,33 @@
                         <!-- 採択 -->
                         <div class="control buttons has-addons">
                             <span
-                                v-on:click="isAdopt=true; isNotAdopt=true;"
-                                v-bind:class="{ 'is-selected is-link': isAdopt && isNotAdopt }" class="button">すべて</span>
+                                v-on:click="eventType=undefined; isAdopt=true; isNotAdopt=true; filter(this)"
+                                v-bind:class="{ 'is-selected is-link': !eventType && isAdopt && isNotAdopt }" class="button">
+                                すべて
+                            </span>
                             <span
-                                v-on:click="isAdopt=true;  isNotAdopt=false;"
-                                v-bind:class="{ 'is-selected is-danger': isAdopt && !isNotAdopt }" class="button">採択</span>
+                                v-on:click="eventType=undefined; isAdopt=true; isNotAdopt=false; filter(this)"
+                                v-bind:class="{ 'is-selected is-danger': !eventType && isAdopt && !isNotAdopt }" class="button">
+                                採択
+                            </span>
                             <span
-                                v-on:click="isAdopt=false; isNotAdopt=true;"
-                                v-bind:class="{ 'is-selected is-info': !isAdopt && isNotAdopt }" class="button">非採択</span>
+                                v-on:click="eventType=undefined; isAdopt=false; isNotAdopt=true; filter(this)"
+                                v-bind:class="{ 'is-selected is-info': !eventType && !isAdopt && isNotAdopt }" class="button">
+                                非採択
+                            </span>
+                        </div>
+                        <!-- 関連イベント -->
+                        <div class="control buttons has-addons">
+                            <span
+                                v-on:click="eventType='orecon'; filter(this)"
+                                v-bind:class="{ 'is-selected is-warning': eventType === 'orecon' }" class="button">
+                                俺コン
+                            </span>
+                            <span
+                                v-on:click="eventType='rejectcon'; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': eventType === 'rejectcon' }" class="button">
+                                Reject Conf
+                            </span>
                         </div>
                         <!-- キーワード検索 -->
                         <div class="control field is-horizontal">
@@ -122,6 +152,10 @@
                 <div id="proposals">
                     <!-- 一覧 -->
                     <template v-if="proposals">
+                        <section class="section"
+                            v-show="proposals.length === 0 && searchField.eventType =='orecon'">
+                            <p>Coming soon...</p>
+                        </section>
                         <div v-for="proposal in proposals">
                             <section class="section is-small">
                                 <div class="card">
@@ -135,8 +169,12 @@
                                             <div class="media-content">
                                                 <p class="title is-5">
                                                     <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
+                                                    <span v-show="proposal.is_adopted_rejectcon" class="tag is-primary">Reject Conf</span>
                                                     <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
-                                                    <a v-if="proposal.is_adopted === false" :href="proposal.orecon_form_url" target="_blank" class="button is-small is-warning">俺コンで聞きたい！</a>
+                                                    <a v-if="proposal.is_adopted === false && !proposal.is_adopted_rejectcon"
+                                                        :href="proposal.orecon_form_url" target="_blank" class="button is-small is-warning">
+                                                        俺コンで聞きたい！
+                                                    </a>
                                                 </p>
                                                 <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                             </div>
