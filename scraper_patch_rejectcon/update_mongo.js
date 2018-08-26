@@ -28,7 +28,7 @@ db.cfps.update({title: 'ソースコードから読み解く - Quick はどの�
 db.cfps.update({title: 'Reduxで10本弱のアプリを作った弊社のナレッジ、時間の許す限り話すよ'}, {$set:{is_adopted_orecon:true}});
 db.cfps.update({title: 'アトミックデザインの導入と実践プロセス'}, {$set:{is_adopted_orecon:true}});
 db.cfps.update({title: 'UIWindowが複数存在するとき、ステータスバーのスタイル設定が難しい件'}, {$set:{is_adopted_orecon:true}});
-db.cfps.update({title: 'Adaptive UI - 解像度の異なるデバイスや画面の向きに対応する最適なレイアウトへ -'}, {$set:{is_adopted_orecon:true}});
+db.cfps.update({title: 'Adaptive UI - 解像度の異なるデバイスや画面の向きに対応する最適なレイアウトへ - '}, {$set:{is_adopted_orecon:true}});
 db.cfps.update({title: 'エンジニア経験を活かしたスクラムマスターとして開発チームとプロダクトを成長させる'}, {$set:{is_adopted_orecon:true}});
 db.cfps.update({title: 'Androidを考えたiOSアンチパターン'}, {$set:{is_adopted_orecon:true}});
 db.cfps.update({title: 'iOSでmp4をデコードして自分だけの動画プレーヤーを作ろう！'}, {$set:{is_adopted_orecon:true}});
