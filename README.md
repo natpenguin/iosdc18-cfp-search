@@ -4,11 +4,19 @@ A api provides data of cfp that proposed from engineers as list
 
 ## How To Setup
 
+### Run on docker
+
+Start containers:
+
+```bash
+docker-compose up -d
+# Hot-reload is enabled on default, so you don't need restart containers in most case.
 ```
-$ git clone git@github.com:natpenguin/iosdc18-cfp-search-api.git
-$ cd iosdc18-cfp-search-api
-$ pip3 install -r requirements.txt -c constraints.txt
-$ gunicorn api:app
+
+Setup data via scraper:
+
+```bash
+./setup-local.sh
 ```
 
 ## Lint
@@ -18,14 +26,6 @@ please specify a any file to `target.py` .
 $ pip3 install -r requirements.txt -c constraint.txt
 $ pep8 target.py
 ```
-
-## Run on docker
-
-```bash
-docker-compose up
-```
-
-Hot-reload is enabled on default, so you don't need restart containers in most case.
 
 ## Environment variable
 * Host of MongoDB  
