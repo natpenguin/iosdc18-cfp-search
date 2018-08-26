@@ -1,17 +1,13 @@
 #!/bin/bash -eu
 cd `dirname $0`
 
-if [ $# -ne 1 ]; then
-    echo "Please set args that tag."
-    exit 1
-fi
-TAG=$1
+TAG=0.0.2
 
 #
 # Dockerイメージをビルドして、GCRにpush
 #
 
-IMAGE=gcr.io/iosdc-2018-cfp/scraper-patch-rejectcon:$TAG
+IMAGE=gcr.io/iosdc-2018-cfp/scraper-patch:$TAG
 
 # build
 docker build -t $IMAGE .
