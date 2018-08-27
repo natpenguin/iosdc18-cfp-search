@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: patch-rejectcon
+  name: patch-v2
   labels:
     chapter: jobs
 spec:
