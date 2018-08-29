@@ -33,7 +33,8 @@ def parseHTML(rawData):
     cfps = []
     for cfpTree in cfpsTree:
         cfp = CFP.create(cfpTree) 
-        cfps.append(cfp);
+        if cfp is not None:
+            cfps.append(cfp)
     return cfps
 
 def save_csv(cfps):
@@ -136,7 +137,11 @@ class CFP:
         else:
             cfp.icon_url = ''
 
-        cfp.twitter_id = cfpTree.xpath('.//span[contains(@class,"left20")]/a')[0].text 
+        twitter_urls = cfpTree.xpath('.//span[contains(@class,"left20")]/a')
+        if len(twitter_urls) > 0:
+            cfp.twitter_id = twitter_urls[0].text 
+        else:
+            return None
 
         if len(cfpTree.xpath('.//div[contains(@class,"type")]/span[contains(@class, "tags")]')) > 0:
             cfp.is_adopted = True
