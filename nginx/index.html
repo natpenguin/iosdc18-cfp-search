@@ -152,10 +152,6 @@
                 <div id="proposals">
                     <!-- 一覧 -->
                     <template v-if="proposals">
-                        <section class="section"
-                            v-show="proposals.length === 0 && searchField.eventType =='orecon'">
-                            <p>Coming soon...</p>
-                        </section>
                         <div v-for="proposal in proposals">
                             <section class="section is-small">
                                 <div class="card">
@@ -169,12 +165,9 @@
                                             <div class="media-content">
                                                 <p class="title is-5">
                                                     <span v-show="proposal.is_adopted" class="tag cfp_adopted">採択</span>
+                                                    <span v-show="proposal.is_adopted_orecon" class="tag is-warning">俺コン</span>
                                                     <span v-show="proposal.is_adopted_rejectcon" class="tag is-primary">Reject Conf</span>
                                                     <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
-                                                    <a v-if="proposal.is_adopted === false && !proposal.is_adopted_rejectcon"
-                                                        :href="proposal.orecon_form_url" target="_blank" class="button is-small is-warning">
-                                                        俺コンで聞きたい！
-                                                    </a>
                                                 </p>
                                                 <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                             </div>
