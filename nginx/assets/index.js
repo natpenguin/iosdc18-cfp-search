@@ -32,7 +32,8 @@ const searchField = new Vue({
             let filteredData = [];
             if (eventType) {
                 let isMatchEvent = function(proposal) {
-                    return eventType === 'rejectcon' && proposal.is_adopted_rejectcon === true
+                    return (eventType === 'orecon' && proposal.is_adopted_orecon === true)
+                        || (eventType === 'rejectcon' && proposal.is_adopted_rejectcon === true);
                 };
                 filteredData = proposalsMaster.filter(proposal =>
                     isKeywordMatch(proposal) && isMatchEvent(proposal)
@@ -90,8 +91,9 @@ axios.get('/api')
         if (found) {
              const talk_type = found.talk_type + ' / ' + pros.talk_type;
              found.talk_type = talk_type.split(' / ').sort().join(' / ');
-             if (pros.is_adopted || pros.is_adopted_rejectcon) {
+             if (pros.is_adopted || pros.is_adopted_rejectcon || pros.is_adopted_orecon) {
                 found.is_adopted           = pros.is_adopted;
+                found.is_adopted_orecon    = pros.is_adopted_orecon;
                 found.is_adopted_rejectcon = pros.is_adopted_rejectcon;
                 found.description          = pros.description;
                 found.detail_url           = pros.detail_url;
