@@ -11,7 +11,7 @@ TAG=$1
 # Dockerイメージをビルドして、GCRにpush
 #
 
-IMAGE=gcr.io/iosdc-2018-cfp/scraper:$TAG
+IMAGE=gcr.io/iosdc-2018-cfp-miya/scraper:$TAG
 
 # build
 docker build -t $IMAGE .
