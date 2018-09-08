@@ -10,7 +10,7 @@ import datetime
 
 def main():
     cfps = []
-    for i in range(1, 28):
+    for i in range(1, 29):
         print(f"""===============================================
                page: {i}
 ===============================================""")
@@ -130,6 +130,11 @@ class CFP:
 
         description_temp = cfpTree.xpath('./div[contains(@class,"abstract")]')[0].text_content() 
         cfp.description = re.sub(r'^(\s|\t|　)+', "", description_temp)
+
+        # Note:
+        # 非公式なプロポーザル（当日のアンカンファレンスなど）は除外する
+        if '（概要はありません）' in cfp.description:
+            return None
 
         icon_url_tree = cfpTree.xpath('.//span/img[contains(@class,"inline-avatar")]')
         if len(icon_url_tree) > 0:
