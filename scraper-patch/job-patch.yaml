@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: patch-v2
+  name: patch-v3
   labels:
     chapter: jobs
 spec:
