@@ -45,3 +45,8 @@ ${SED_I[@]} "s/{{TAG}}/$TAG/" ./nginx/nginx-deployment.yaml
 ${SED_I[@]} "s/{{TYPE}}/$NGINX_SERVICE_TYPE/" ./nginx/nginx-service.yaml
 kubectl apply -f ./nginx/nginx-deployment.yaml
 kubectl apply -f ./nginx/nginx-service.yaml
+
+# ingress
+if [ "$NGINX_SERVICE_TYPE" == 'NodePort' ]; then
+    kubectl apply -f ./nginx/ingress.yaml
+fi
