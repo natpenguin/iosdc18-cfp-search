@@ -1,11 +1,7 @@
 #!/bin/bash -eu
 cd `dirname $0`
 
-if [ $# -ne 1 ]; then
-    echo "Please set args that tag."
-    exit 1
-fi
-TAG=$1
+TAG=0.3.1
 
 #
 # Dockerイメージをビルドして、GCRにpush
