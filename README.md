@@ -91,3 +91,12 @@ $ pep8 target.py
     ```
 
     http://35.200.125.234/
+
+## Reference
+
+| name | link |
+|-------|-------|
+|vue.js | https://jp.vuejs.org https://www.vuemastery.com |
+|Bulma | https://bulma.io |
+| fontawesome | https://fontawesome.com |
+| mongoDB | https://docs.mongodb.com/manual/ https://utage.headwaters.co.jp/blog/?p=5065 |
