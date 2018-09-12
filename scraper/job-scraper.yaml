@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
         - name: scraper
-          image: gcr.io/iosdc-2018-cfp/scraper:0.3.0
+          image: gcr.io/iosdc-2018-cfp-miya/scraper:0.3.1
           imagePullPolicy: Always
       restartPolicy: OnFailure

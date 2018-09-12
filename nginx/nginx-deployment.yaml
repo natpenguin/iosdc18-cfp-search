@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: gcr.io/iosdc-2018-cfp/nginx:{{TAG}}
+        image: gcr.io/iosdc-2018-cfp-miya/nginx:{{TAG}}
         imagePullPolicy: Always
         ports:
         - containerPort: 80

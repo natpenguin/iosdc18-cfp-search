@@ -24,7 +24,7 @@ spec:
           clouddns:
             # A secretKeyRef to a google cloud json service account
             serviceAccountSecretRef:
-              name: clouddns-service-account
-              key: cert-manager-key.json
+              name: cert-manager-dns-key
+              key: key.json
             # The project in which to update the DNS zone
-            project: iosdc-2018-cfp
+            project: iosdc-2018-cfp-miya
