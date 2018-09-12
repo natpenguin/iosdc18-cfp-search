@@ -168,11 +168,6 @@
                                                     <span v-show="proposal.is_adopted_orecon" class="tag is-warning">俺コン</span>
                                                     <span v-show="proposal.is_adopted_rejectcon" class="tag is-primary">Reject Conf</span>
                                                     <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
-                                                    <a v-if="proposal.slide_url"
-                                                        :href="proposal.slide_url"
-                                                        target="_blank">
-                                                        <i class="fab fa-slideshare"></i>
-                                                    </a>
                                                 </p>
                                                 <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
                                             </div>
@@ -180,7 +175,18 @@
                                         <div class="content">
                                             <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
                                         </div>
-                                        <span class="small">{{ proposal.talk_type }}</span>
+                                        <span class="small">
+                                            <a v-if="proposal.slide_url" 
+                                                class="button is-small is-link is-outlined"
+                                                :href="proposal.slide_url"
+                                                target="_blank">
+                                                <span class="icon is-small">
+                                                    <i class="fab fa-slideshare"></i>
+                                                </span>
+                                                <span>スライド</span>
+                                            </a>
+                                            {{ proposal.talk_type }}
+                                        </span>
                                     </div>
                                 </div>
                             </section>
