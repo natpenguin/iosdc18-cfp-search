@@ -23,7 +23,7 @@ def main():
 
 
 def fetchPageData(page_num):
-    data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?page={0}".format(page_num))
+    data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?f=all&page={0}".format(page_num))
     response = data.read()
     return response
 

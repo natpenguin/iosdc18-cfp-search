@@ -12,3 +12,9 @@ credential.py
 
 # mongo
 /db
+
+# bin
+bin/**/*.bak
+
+# volume
+tmp/volume

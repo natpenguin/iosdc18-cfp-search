@@ -1,0 +1,20 @@
+#
+# Scraper patch
+#
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: patch-v3
+  labels:
+    chapter: jobs
+spec:
+  template:
+    metadata:
+      labels:
+        chapter: jobs
+    spec:
+      containers:
+        - name: scraper
+          image: iosdc-scraper-patch
+          imagePullPolicy: IfNotPresent
+      restartPolicy: OnFailure

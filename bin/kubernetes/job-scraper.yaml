@@ -1,0 +1,20 @@
+#
+# Scraper
+#
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: scraper-phase2
+  labels:
+    chapter: jobs
+spec:
+  template:
+    metadata:
+      labels:
+        chapter: jobs
+    spec:
+      containers:
+        - name: scraper
+          image: iosdc-scraper
+          imagePullPolicy: IfNotPresent
+      restartPolicy: OnFailure
