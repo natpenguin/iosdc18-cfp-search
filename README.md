@@ -19,6 +19,15 @@ Setup data via scraper:
 ./setup-local.sh
 ```
 
+### Run on Kubernetes (but no synchronize to host files on realtime)
+
+```bash
+./bin/deploy-local-k8s.sh
+```
+
+**Note:**  
+This script is create local volume to `./bin/volume`.
+
 ## Lint
 
 please specify a any file to `target.py` .
