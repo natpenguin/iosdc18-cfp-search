@@ -26,7 +26,7 @@ Setup data via scraper:
 ```
 
 **Note:**  
-This script is create local volume to `./bin/volume`.
+This script creates local volume to `./bin/volume`.
 
 ## Lint
 
