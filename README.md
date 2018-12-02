@@ -21,12 +21,23 @@ Setup data via scraper:
 
 ### Run on Kubernetes (but no synchronize to host files on realtime)
 
+#### Deploy
+
 ```bash
 ./bin/deploy-local-k8s.sh
 ```
 
 **Note:**  
 This script creates local volume to `./tmp/volume`.
+
+#### Destroy
+
+```bash
+./bin/destroy-local-k8s.sh
+```
+
+**Note:**
+All volumes delete too.
 
 ## Lint
 
