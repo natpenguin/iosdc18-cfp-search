@@ -15,4 +15,6 @@ credential.py
 
 # bin
 bin/**/*.bak
-bin/volume
+
+# volume
+tmp/volume

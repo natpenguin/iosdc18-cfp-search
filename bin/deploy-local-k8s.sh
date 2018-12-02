@@ -16,7 +16,7 @@ docker build -t iosdc-scraper-patch ../scraper-patch
 #
 
 # volume
-VOLUME_PATH="`pwd`/volume"
+VOLUME_PATH="$(cd ../; pwd)/tmp/volume"
 sed -i '.bak' "s|{{VOLUME_PATH}}|$VOLUME_PATH|" ./kubernetes/cluster.yaml
 
 # cluster
