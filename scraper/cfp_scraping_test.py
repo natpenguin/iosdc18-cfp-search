@@ -15,6 +15,7 @@ class TestCfpScraping(unittest.TestCase):
         self.assertTrue(cfp.talk_date)
         self.assertTrue(cfp.talk_site)
         self.assertTrue(cfp.is_adopted)
+        self.assertEqual(cfp.video_url, 'https://www.youtube.com/watch?v=YhBXFaTLXa4')
 
 
 if __name__ == "__main__":

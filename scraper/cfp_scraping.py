@@ -58,6 +58,7 @@ class CFP:
         self.talk_date = None
         self.talk_site = ""
         self.is_adopted = False 
+        self.video_url = ""
 
     csvHeader = [
         'title',
@@ -69,7 +70,8 @@ class CFP:
         'detail_url',
         'talk_date',
         'talk_site',
-        'is_adopted'
+        'is_adopted',
+        'video_url'
         ]
 
     def generate_document(self):
@@ -82,7 +84,8 @@ class CFP:
                 'detail_url': self.detail_url,
                 'talk_date': self.talk_date,
                 'talk_site': self.talk_site,
-                'is_adopted': self.is_adopted
+                'is_adopted': self.is_adopted,
+                'video_url': self.video_url
                 }
 
     def desc(self):
@@ -116,6 +119,9 @@ class CFP:
 
 【is_adopted】
 {self.is_adopted}
+
+【video_url】
+{self.video_url}
                 """)
 
     @classmethod
@@ -157,6 +163,7 @@ class CFP:
             tmpDate = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
             cfp.talk_date = datetime.datetime.strptime(tmpDate, '%Y/%m/%d %H:%M〜')
             cfp.talk_site = tmp_schedule.xpath('./span[contains(@class,"track")]')[0].text
+            cfp.video_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[1]/a')[0].attrib['href'] # ビデオ
         cfp.desc()
         return cfp
 
