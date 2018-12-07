@@ -163,7 +163,10 @@ class CFP:
             tmpDate = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
             cfp.talk_date = datetime.datetime.strptime(tmpDate, '%Y/%m/%d %H:%M〜')
             cfp.talk_site = tmp_schedule.xpath('./span[contains(@class,"track")]')[0].text
-            cfp.video_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[1]/a')[0].attrib['href'] # ビデオ
+            # ビデオ（キャンセルの場合は無い）
+            video_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[1]/a')
+            if len(video_url) > 0:
+                cfp.video_url = video_url[0].attrib['href']
         cfp.desc()
         return cfp
 
