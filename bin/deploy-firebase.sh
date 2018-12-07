@@ -13,6 +13,9 @@ mkdir ../public
 #
 # save latest api response on local k8s
 #
+if [ -d '../tmp' ]; then
+    rm -r ../tmp
+fi
 ./deploy-local-k8s.sh
 curl -o ../public/api.json http://localhost/api
 ./destroy-local-k8s.sh
