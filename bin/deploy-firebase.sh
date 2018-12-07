@@ -13,8 +13,8 @@ mkdir ../public
 #
 # save latest api response on local k8s
 #
-if [ -d '../tmp' ]; then
-    rm -r ../tmp
+if [ -d '../tmp/volume' ]; then
+    rm -r ../tmp/volume
 fi
 ./deploy-local-k8s.sh
 curl -o ../public/api.json http://localhost/api
