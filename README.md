@@ -115,7 +115,7 @@ $ pep8 target.py
 ## Deploy to Firebase
 
 ```sh
-firebase deploy
+./bin/deploy-firebase.sh
 ```
 
 ## Reference
