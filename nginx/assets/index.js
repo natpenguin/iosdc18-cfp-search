@@ -97,7 +97,8 @@ axios.get('/api')
                 found.is_adopted_rejectcon = pros.is_adopted_rejectcon;
                 found.description          = pros.description;
                 found.detail_url           = pros.detail_url;
-                found.orecon_form_url      = pros.orecon_form_url; 
+                found.orecon_form_url      = pros.orecon_form_url;
+                found.video_url            = pros.video_url;
              }
         } else {
             proposals.push(pros);
