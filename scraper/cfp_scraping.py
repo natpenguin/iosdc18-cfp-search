@@ -14,13 +14,15 @@ def main():
         print(f"""===============================================
                page: {i}
 ===============================================""")
-        rawData = fetchPageData(i)
-        cfps = cfps + parseHTML(rawData)
+        cfps = cfps + fetchPageCfps(i)
 
     cpm.cfp_mongo().insert(cfps)
 
     save_csv(cfps)  # デバッグ用
 
+
+def fetchPageCfps(page_num):
+    return parseHTML(fetchPageData(page_num))
 
 def fetchPageData(page_num):
     data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?f=all&page={0}".format(page_num))
