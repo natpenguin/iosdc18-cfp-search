@@ -23,3 +23,7 @@ tmp/volume
 .firebase
 .firebaserc
 public
+
+# python
+scraper/venv
+scraper/reports
