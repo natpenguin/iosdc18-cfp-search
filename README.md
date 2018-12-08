@@ -112,6 +112,12 @@ $ pep8 target.py
 
     http://35.200.125.234/
 
+## Deploy to Firebase
+
+```sh
+./bin/deploy-firebase.sh
+```
+
 ## Reference
 
 | name | link |

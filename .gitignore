@@ -18,3 +18,8 @@ bin/**/*.bak
 
 # volume
 tmp/volume
+
+# firebase
+.firebase
+.firebaserc
+public

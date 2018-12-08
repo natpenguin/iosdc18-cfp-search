@@ -14,13 +14,15 @@ def main():
         print(f"""===============================================
                page: {i}
 ===============================================""")
-        rawData = fetchPageData(i)
-        cfps = cfps + parseHTML(rawData)
+        cfps = cfps + fetchPageCfps(i)
 
     cpm.cfp_mongo().insert(cfps)
 
     save_csv(cfps)  # デバッグ用
 
+
+def fetchPageCfps(page_num):
+    return parseHTML(fetchPageData(page_num))
 
 def fetchPageData(page_num):
     data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?f=all&page={0}".format(page_num))
@@ -56,6 +58,7 @@ class CFP:
         self.talk_date = None
         self.talk_site = ""
         self.is_adopted = False 
+        self.video_url = ""
 
     csvHeader = [
         'title',
@@ -67,7 +70,8 @@ class CFP:
         'detail_url',
         'talk_date',
         'talk_site',
-        'is_adopted'
+        'is_adopted',
+        'video_url'
         ]
 
     def generate_document(self):
@@ -80,7 +84,8 @@ class CFP:
                 'detail_url': self.detail_url,
                 'talk_date': self.talk_date,
                 'talk_site': self.talk_site,
-                'is_adopted': self.is_adopted
+                'is_adopted': self.is_adopted,
+                'video_url': self.video_url
                 }
 
     def desc(self):
@@ -114,6 +119,9 @@ class CFP:
 
 【is_adopted】
 {self.is_adopted}
+
+【video_url】
+{self.video_url}
                 """)
 
     @classmethod
@@ -155,6 +163,10 @@ class CFP:
             tmpDate = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
             cfp.talk_date = datetime.datetime.strptime(tmpDate, '%Y/%m/%d %H:%M〜')
             cfp.talk_site = tmp_schedule.xpath('./span[contains(@class,"track")]')[0].text
+            # ビデオ（キャンセルの場合は無い）
+            video_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[1]/a')
+            if len(video_url) > 0:
+                cfp.video_url = video_url[0].attrib['href']
         cfp.desc()
         return cfp
 
