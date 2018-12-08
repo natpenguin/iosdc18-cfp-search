@@ -176,6 +176,15 @@
                                             <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
                                         </div>
                                         <span class="small">
+                                            <a v-if="proposal.video_url" 
+                                                class="button is-small is-link is-outlined"
+                                                :href="proposal.video_url"
+                                                target="_blank">
+                                                <span class="icon is-small">
+                                                    <i class="fab fa-youtube"></i>
+                                                </span>
+                                                <span>ビデオ</span>
+                                            </a>
                                             <a v-if="proposal.slide_url" 
                                                 class="button is-small is-link is-outlined"
                                                 :href="proposal.slide_url"

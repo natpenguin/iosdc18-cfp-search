@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 cd `dirname $0`
 
@@ -14,6 +14,13 @@ kubectl delete -f ./kubernetes/cluster.yaml
 
 kubectl delete -f ./kubernetes/job-scraper.yaml
 kubectl delete -f ./kubernetes/job-scraper-patch.yaml
+
+#
+# Temporary directory (volumes)
+#
+if [ -d '../tmp/volume' ]; then
+    rm -r ../tmp/volume
+fi
 
 #
 # Finish
