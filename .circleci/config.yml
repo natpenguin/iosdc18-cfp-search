@@ -24,7 +24,7 @@ jobs:
           command: |
             . venv/bin/activate
             python cfp_scraping_test.py
-
+          working_directory: scraper
       - store_artifacts:
           path: test-reports
           destination: test-reports
