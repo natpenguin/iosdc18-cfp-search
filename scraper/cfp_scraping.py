@@ -173,7 +173,7 @@ class CFP:
             video_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[1]/a')
             if len(video_url) > 0:
                 cfp.video_url = video_url[0].attrib['href']
-            # スライドURL（キャンセルの場合は無い）
+            # スライドURL（無いケースもある）
             slide_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[2]/a')
             if len(slide_url) > 0:
                 cfp.slide_url = slide_url[0].attrib['href']
