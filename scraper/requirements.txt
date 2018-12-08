@@ -3,3 +3,4 @@ gunicorn
 lxml
 pymongo
 pep8
+html-testRunner

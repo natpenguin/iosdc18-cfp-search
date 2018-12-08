@@ -1,5 +1,6 @@
 import unittest
 import cfp_scraping as scraping
+import HtmlTestRunner
 
 class TestCfpScraping(unittest.TestCase):
     def test_fetchPageCfps(self):
@@ -19,4 +20,4 @@ class TestCfpScraping(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='TestCfpScraping'))

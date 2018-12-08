@@ -1,7 +1,3 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
-#
 version: 2
 jobs:
   build:
@@ -12,6 +8,7 @@ jobs:
 
     steps:
       - checkout
+
       - run:
           name: install dependencies
           command: |
@@ -25,6 +22,7 @@ jobs:
             . venv/bin/activate
             python cfp_scraping_test.py
           working_directory: scraper
+
       - store_artifacts:
-          path: test-reports
+          path: scraper/reports
           destination: test-reports
