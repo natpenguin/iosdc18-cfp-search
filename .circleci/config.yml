@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+          working_directory: scraper
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            python cfp_scraping_test.py
+          working_directory: scraper
+
+      - store_artifacts:
+          path: scraper/reports
+          destination: test-reports
