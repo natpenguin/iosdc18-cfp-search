@@ -139,11 +139,9 @@ class CFP:
 
         cfp.talk_type = cfpTree.xpath('.//span[contains(@class, "name")]')[0].text.strip()
 
-        user_tmp = cfpTree.xpath('.//div[contains(@class,"speaker")]/span')[0].text_content()
-        cfp.user = re.sub(r'^(\s|\t|　)+', "", user_tmp).strip()
+        cfp.user = cfpTree.xpath('.//div[contains(@class,"speaker")]/span')[0].text_content().strip()
 
-        description_temp = cfpTree.xpath('./div[contains(@class,"abstract")]')[0].text_content()
-        cfp.description = re.sub(r'^(\s|\t|　)+', "", description_temp).strip()
+        cfp.description = cfpTree.xpath('./div[contains(@class,"abstract")]')[0].text_content().strip()
 
         # Note:
         # 非公式なプロポーザル（当日のアンカンファレンスなど）は除外する
