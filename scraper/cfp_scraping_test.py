@@ -17,6 +17,7 @@ class TestCfpScraping(unittest.TestCase):
         self.assertTrue(cfp.talk_site)
         self.assertTrue(cfp.is_adopted)
         self.assertEqual(cfp.video_url, 'https://www.youtube.com/watch?v=YhBXFaTLXa4')
+        self.assertEqual(cfp.slide_url, 'https://speakerdeck.com/keisuke69/the-revolution-of-real-time-webapps')
 
 
 if __name__ == "__main__":
