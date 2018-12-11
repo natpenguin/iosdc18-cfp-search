@@ -11,7 +11,7 @@ class Resource(object):
         client = pymongo.MongoClient(host='mongo', port=27017)
         db = client.iosdc2018_phase_2
         datas = list(db.cfps.find({}, { '_id': False }).sort([("title", pymongo.ASCENDING)]))
-        resp.body = dumps(datas)
+        resp.body = dumps(datas, ensure_ascii=False)
         resp.append_header('Access-Control-Allow-Origin', '*')
 
         # mongo_response = cpm.cfp_mongo().find_all()
