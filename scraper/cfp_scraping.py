@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from urllib.request import urlopen
-from lxml import html 
+from lxml import html
 import csv
 import re
 import cfp_persistence_manager as cpm
@@ -34,7 +34,7 @@ def parseHTML(rawData):
     cfpsTree  = rootTree.xpath('//div[contains(@class,"list-proposal")]')
     cfps = []
     for cfpTree in cfpsTree:
-        cfp = CFP.create(cfpTree) 
+        cfp = CFP.create(cfpTree)
         if cfp is not None:
             cfps.append(cfp)
     return cfps
@@ -57,8 +57,9 @@ class CFP:
         self.detail_url = ""
         self.talk_date = None
         self.talk_site = ""
-        self.is_adopted = False 
+        self.is_adopted = False
         self.video_url = ""
+        self.slide_url = ""
 
     csvHeader = [
         'title',
@@ -71,7 +72,8 @@ class CFP:
         'talk_date',
         'talk_site',
         'is_adopted',
-        'video_url'
+        'video_url',
+        'slide_url'
         ]
 
     def generate_document(self):
@@ -85,7 +87,8 @@ class CFP:
                 'talk_date': self.talk_date,
                 'talk_site': self.talk_site,
                 'is_adopted': self.is_adopted,
-                'video_url': self.video_url
+                'video_url': self.video_url,
+                'slide_url': self.slide_url
                 }
 
     def desc(self):
@@ -101,7 +104,7 @@ class CFP:
 
 【description】
 {self.description}
-        
+
 【icon_url】
 {self.icon_url}
 
@@ -122,6 +125,9 @@ class CFP:
 
 【video_url】
 {self.video_url}
+
+【slide_url】
+{self.slide_url}
                 """)
 
     @classmethod
@@ -136,7 +142,7 @@ class CFP:
         user_tmp = cfpTree.xpath('.//div[contains(@class,"speaker")]/span')[0].text_content()
         cfp.user = re.sub(r'^(\s|\t|　)+', "", user_tmp)
 
-        description_temp = cfpTree.xpath('./div[contains(@class,"abstract")]')[0].text_content() 
+        description_temp = cfpTree.xpath('./div[contains(@class,"abstract")]')[0].text_content()
         cfp.description = re.sub(r'^(\s|\t|　)+', "", description_temp)
 
         # Note:
@@ -152,21 +158,25 @@ class CFP:
 
         twitter_urls = cfpTree.xpath('.//span[contains(@class,"left20")]/a')
         if len(twitter_urls) > 0:
-            cfp.twitter_id = twitter_urls[0].text 
+            cfp.twitter_id = twitter_urls[0].text
         else:
             return None
 
         if len(cfpTree.xpath('.//div[contains(@class,"type")]/span[contains(@class, "tags")]')) > 0:
             cfp.is_adopted = True
-            tmp_type_tree = cfpTree.xpath('.//div[contains(@class,"type")]')[0] 
+            tmp_type_tree = cfpTree.xpath('.//div[contains(@class,"type")]')[0]
             tmp_schedule = tmp_type_tree.xpath('./span[contains(@class,"schedules")]')[0]
             tmpDate = tmp_schedule.xpath('./span[contains(@class,"schedule")]')[0].text
             cfp.talk_date = datetime.datetime.strptime(tmpDate, '%Y/%m/%d %H:%M〜')
             cfp.talk_site = tmp_schedule.xpath('./span[contains(@class,"track")]')[0].text
-            # ビデオ（キャンセルの場合は無い）
+            # 動画URL（キャンセルの場合は無い）
             video_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[1]/a')
             if len(video_url) > 0:
                 cfp.video_url = video_url[0].attrib['href']
+            # スライドURL（無いケースもある）
+            slide_url = cfpTree.xpath('.//ul[contains(@class,"links")]/li[2]/a')
+            if len(slide_url) > 0:
+                cfp.slide_url = slide_url[0].attrib['href']
         cfp.desc()
         return cfp
 
