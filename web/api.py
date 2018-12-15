@@ -12,6 +12,7 @@ class Resource(object):
         client = pymongo.MongoClient(host='mongo', port=27017)
         db = client.iosdc2018_phase_2
         datas = list(db.cfps.find({}, { '_id': False }).sort([("title", pymongo.ASCENDING)]))
+        datas = summarize_proposals(datas)
         resp.body = dumps(datas, ensure_ascii=False)
         resp.append_header('Access-Control-Allow-Origin', '*')
 
@@ -36,9 +37,12 @@ def summarize_proposals(datas):
             return acr
         else:
             found = xs[0]
-            found['talk_type'] = found['talk_type'] + ' / ' + data['talk_type']
+            talk_types = found['talk_type'].split(' / ')
+            if data['talk_type'] not in talk_types:
+                talk_types.append(data['talk_type'])
+                found['talk_type'] = ' / '.join(sorted(talk_types))
             # 採択された方のデータを正とする
-            if data['is_adopted'] or data['is_adopted_rejectcon'] or data['is_adopted_orecon']:
+            if data.get('is_adopted') == True or data.get('is_adopted_rejectcon') == True or data.get('is_adopted_orecon') == True:
                 summarize_proposal(data, found)
             return acr
 
