@@ -1,5 +1,6 @@
 import falcon
 import pymongo
+from functools import reduce
 from bson.json_util import dumps
 
 class Resource(object):
@@ -23,6 +24,46 @@ class ResourceHealth(object):
         """Handles GET requests"""
         resp.status = falcon.HTTP_200
         resp.body = "OK"
+
+def summarize_proposals(datas):
+    """
+    同一とみなせるプロポーザル（トークタイプが異なる）を集約したリストを返す
+    """
+    def f(acr, data):
+        xs = list(filter(lambda x: is_same_proposal(x, data), acr))
+        if len(xs) == 0:
+            acr.append(data)
+            return acr
+        else:
+            found = xs[0]
+            found['talk_type'] = found['talk_type'] + ' / ' + data['talk_type']
+            # 採択された方のデータを正とする
+            if data['is_adopted'] or data['is_adopted_rejectcon'] or data['is_adopted_orecon']:
+                summarize_proposal(data, found)
+            return acr
+
+    return reduce(f, datas, [])
+
+def is_same_proposal(x, y):
+    """
+    同じプロポーザルと見なすか
+    """
+    return x['user'] == y['user'] \
+        and x['title'] == y['title']
+
+def summarize_proposal(src, dest):
+    def copy_if(src, dest, key):
+        if key in src:
+            dest[key] = src[key]
+
+    copy_if(src, dest, 'is_adopted')
+    copy_if(src, dest, 'is_adopted_orecon')
+    copy_if(src, dest, 'is_adopted_rejectcon')
+    copy_if(src, dest, 'description')
+    copy_if(src, dest, 'detail_url')
+    copy_if(src, dest, 'orecon_form_url')
+    copy_if(src, dest, 'video_url')
+
 
 app = falcon.API()
 app.add_route('/api', Resource())
