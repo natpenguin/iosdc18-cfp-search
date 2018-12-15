@@ -65,7 +65,6 @@ def summarize_proposal(src, dest):
     copy_if(src, dest, 'is_adopted_rejectcon')
     copy_if(src, dest, 'description')
     copy_if(src, dest, 'detail_url')
-    copy_if(src, dest, 'orecon_form_url')
     copy_if(src, dest, 'video_url')
 
 
