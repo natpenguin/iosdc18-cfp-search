@@ -43,5 +43,5 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python cfp_scraping_test.py
+            python api_test.py
           working_directory: web
