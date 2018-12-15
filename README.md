@@ -1,6 +1,7 @@
-# iosdc18-cfp-search-api
+# この素晴らしいCfPに祝福を！
 
-A api provides data of cfp that proposed from engineers as list
+[https://iosdc-cfps.penginmura.tech/](https://iosdc-cfps.penginmura.tech/)
+![screenshot](doc/image/screenshot.png)
 
 ## How To Setup
 
@@ -27,7 +28,7 @@ Setup data via scraper:
 ./bin/deploy-local-k8s.sh
 ```
 
-**Note:**  
+**Note:**
 This script creates local volume to `./tmp/volume`.
 
 #### Destroy
@@ -48,19 +49,19 @@ $ pep8 target.py
 ```
 
 ## Environment variable
-* Host of MongoDB  
+* Host of MongoDB
  `"CFP_MONGO_HOST"`
- 
-* Port of MongoDB  
+
+* Port of MongoDB
  `"CFP_MONGO_PORT"`
- 
+
 ## MongoDB
 * Database name
-  * before adopting cfps  
+  * before adopting cfps
     `"iosdc2018_phase_0"`
-  * after adopting cfps  
+  * after adopting cfps
     `"iosdc2018_phase_1"`
-* Collection name  
+* Collection name
     `"cfps"`
 * Document scheme
   ```python
