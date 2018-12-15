@@ -56,7 +56,7 @@ const searchField = new Vue({
                 filteredData = proposalsMaster.filter(value =>
                     isKeywordMatch(value)
                         && (isAdopted(value) || isNotAdopted(value))
-                );    
+                );
             }
             proposalsInstance.proposals = filteredData;
         }
@@ -73,38 +73,7 @@ const proposalsInstance = new Vue({
 
 // プロポーザル一覧を読み込み
 axios.get('/api')
-.then(function (response) {
-
-    const proposals = []; // mutable
-
-    // Aggrigate the same talk types
-    response.data.forEach(pros => {
-
-        const found = proposals.find(element =>
-            element.user        == pros.user
-         && element.title       == pros.title
-         && element.description == pros.description
-        );
-
-        pros.orecon_form_url = "https://docs.google.com/forms/d/e/1FAIpQLSfFaoVGH__Ck-CzdnH83ZC_1PlFewXsJmoEe68mhrNfeRLA4w/viewform?entry.1898580758=" + pros.detail_url;
-
-        if (found) {
-             const talk_type = found.talk_type + ' / ' + pros.talk_type;
-             found.talk_type = talk_type.split(' / ').sort().join(' / ');
-             if (pros.is_adopted || pros.is_adopted_rejectcon || pros.is_adopted_orecon) {
-                found.is_adopted           = pros.is_adopted;
-                found.is_adopted_orecon    = pros.is_adopted_orecon;
-                found.is_adopted_rejectcon = pros.is_adopted_rejectcon;
-                found.description          = pros.description;
-                found.detail_url           = pros.detail_url;
-                found.orecon_form_url      = pros.orecon_form_url;
-                found.video_url            = pros.video_url;
-             }
-        } else {
-            proposals.push(pros);
-        }
-    });
-
-    proposalsMaster = proposals;
-    proposalsInstance.proposals = proposals;
-})
+    .then(function (response) {
+        proposalsMaster = response.data;
+        proposalsInstance.proposals = response.data;
+    })
