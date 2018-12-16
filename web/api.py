@@ -33,14 +33,17 @@ def summarize_proposals(datas):
     def f(acr, data):
         xs = list(filter(lambda x: is_same_proposal(x, data), acr))
         if len(xs) == 0:
+            data['talk_types'] = [data['talk_type']]
+            del data['talk_type'] # remove original key
             acr.append(data)
             return acr
         else:
             found = xs[0]
-            talk_types = found['talk_type'].split(' / ')
-            if data['talk_type'] not in talk_types:
-                talk_types.append(data['talk_type'])
-                found['talk_type'] = ' / '.join(sorted(talk_types))
+            talk_type = data['talk_type']
+            talk_types = found['talk_types']
+            if talk_type not in talk_types:
+                talk_types.append(talk_type)
+                found['talk_types'] = sorted(talk_types)
             # 採択された方のデータを正とする
             if data.get('is_adopted') == True or data.get('is_adopted_rejectcon') == True or data.get('is_adopted_orecon') == True:
                 summarize_proposal(data, found)
