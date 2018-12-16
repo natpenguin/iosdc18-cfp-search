@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
 
+      #
+      # run scraper tests
+      #
       - run:
           name: install dependencies
           command: |
@@ -22,7 +25,23 @@ jobs:
             . venv/bin/activate
             python cfp_scraping_test.py
           working_directory: scraper
-
       - store_artifacts:
           path: scraper/reports
           destination: test-reports
+
+      #
+      # run api tests
+      #
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+          working_directory: web
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            python api_test.py
+          working_directory: web
