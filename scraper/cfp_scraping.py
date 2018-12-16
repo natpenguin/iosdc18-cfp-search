@@ -186,6 +186,7 @@ class CFP:
             if len(slide_url) > 0:
                 cfp.slide_url = slide_url[0].attrib['href']
         cfp.desc()
+        cfp.normalization()
         return cfp
 
 if __name__ == '__main__':
