@@ -21,5 +21,13 @@ class TestCfpScraping(unittest.TestCase):
         self.assertEqual(cfp.slide_url, 'https://speakerdeck.com/keisuke69/the-revolution-of-real-time-webapps')
 
 
+class TestCFP(unittest.TestCase):
+    def test_normalization(self):
+        cfp = scraping.CFP()
+        cfp.talk_type = 'レギュラートーク（30分）'
+        cfp.normalization()
+        self.assertEqual(cfp.talk_type, '30m')
+
+
 if __name__ == "__main__":
     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='TestCfpScraping'))

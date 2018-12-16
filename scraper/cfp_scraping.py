@@ -91,6 +91,16 @@ class CFP:
                 'slide_url': self.slide_url
                 }
 
+    def normalization(self):
+        dict = {
+            'LT（5分）': 'LT',
+            'iOSDCルーキーズ LT（5分）': 'LT_R',
+            'レギュラートーク（15分）': '15m',
+            'レギュラートーク（30分）': '30m',
+            'iOSエンジニアに聞いて欲しいトーク（30分）': 'iOS'
+        }
+        self.talk_type = dict[self.talk_type]
+
     def desc(self):
         print(f"""-------------------------------------------------------------------
 【title】
