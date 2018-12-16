@@ -74,6 +74,17 @@ const proposalsInstance = new Vue({
 // プロポーザル一覧を読み込み
 axios.get('/api')
     .then(function (response) {
-        proposalsMaster = response.data;
-        proposalsInstance.proposals = response.data;
+        let proposals = response.data.map(proposal => {
+            const dict = {
+                'LT': 'LT（5分）',
+                'LT_R': 'iOSDCルーキーズ LT（5分）',
+                '15m': 'レギュラートーク（15分）',
+                '30m': 'レギュラートーク（30分）',
+                'iOS': 'iOSエンジニアに聞いて欲しいトーク（30分）',
+            }
+            proposal.talk_type = proposal.talk_types.map(talk_type => dict[talk_type]).join(' / ')
+            return proposal
+        });
+        proposalsMaster = proposals;
+        proposalsInstance.proposals = proposals;
     })
