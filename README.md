@@ -119,6 +119,12 @@ $ pep8 target.py
 ./bin/deploy-firebase.sh
 ```
 
+## API
+
+Defined api specification in [doc/swagger.yaml](doc/swagger.yaml) by OpenAPI.
+
+[http://localhost:8080/](http://localhost:8080/)
+
 ## Reference
 
 | name | link |

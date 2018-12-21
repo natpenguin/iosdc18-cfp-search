@@ -1,0 +1,84 @@
+swagger: "2.0"
+info:
+  description: "この素晴らしいCfPに祝福を！で利用できるAPI"
+  version: "1.0.0"
+  title: "この素晴らしいCfPに祝福を！"
+host: "iosdc-cfps.penginmura.tech"
+basePath: "/api/v1"
+schemes:
+- "https"
+- "http"
+paths:
+  /proposal:
+    get:
+      tags:
+      - "proposal"
+      summary: "サマライズされたプロポーザルの一覧を取得"
+      description: "現時点では https://iosdc-cfps.penginmura.tech/api.json で取得できる。"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "JSONの配列"
+          schema:
+            $ref: "#/definitions/Proposals"
+definitions:
+  Proposals:
+    type: "array"
+    items:
+      $ref: "#/definitions/Proposal"
+  Proposal:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+        example: "Swift 4.2 はどのような進化をしているのか"
+      user:
+        type: "string"
+        example: "Yusuke Hosonuma"
+      talk_types:
+        type: "array"
+        items:
+          $ref: "#/definitions/TalkType"
+      description:
+        type: "string"
+        example: "Xcode 10 から Swift 4.2 に変更となりますが、..."
+      icon_url:
+        type: "string"
+        example: "https://fortee.jp/files/…2d-8ba1-f469f6be3b06.jpg"
+      twitter_id:
+        type: "string"
+        example: "tobi462"
+      detail_url:
+        type: "string"
+        example: "https://fortee.jp/iosdc-…5-40ff-882e-328704bd6136"
+      talk_date:
+        type: "object" # TODO: 扱いやすい形式にする
+      talk_site:
+        type: "string"
+        example: "Track B"
+      is_adopted:
+        type: "boolean"
+        example: "true"
+      video_url:
+        type: "string"
+        example: "https://www.youtube.com/watch?v=Ihxv466Bl4o"
+      slide_url:
+        type: "string"
+        example: "https://speakerdeck.com/…sonuma/whats-new-swift42"
+  TalkType:
+    type: "string"
+    enum:
+    - "LT"
+    - "LT_R"
+    - "15m"
+    - "30m"
+    - "iOS"
+    description: >
+      Talk types:
+        * LT - LT（5分）
+        * LT_R - iOSDCルーキーズ LT（5分）
+        * 15m - レギュラートーク（15分）
+        * 30m - レギュラートーク（30分）
+        * iO - iOSエンジニアに聞いて欲しいトーク（30分）

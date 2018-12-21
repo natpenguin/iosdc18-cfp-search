@@ -16,7 +16,7 @@ services:
     build: ./web
     ports:
       - "8000:8000"
-    environment: 
+    environment:
       - CFP_MONGO_HOST=mongo
     depends_on:
       - mongo
@@ -41,3 +41,11 @@ services:
     restart: always
     depends_on:
       - mongo
+  swagger:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./doc/swagger.yaml:/sample.yaml
+    environment:
+      SWAGGER_JSON: /sample.yaml
+    ports:
+      - "8080:8080"
