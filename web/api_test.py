@@ -8,42 +8,42 @@ class TestSummarize(unittest.TestCase):
                 "title": "hello",
                 "user": "user1",
                 "is_adopted": False,
-                "talk_type": "レギュラートーク（30分）",
+                "talk_type": "30m",
                 "detail_url": "http://example.com/0",
             },
             {
                 "title": "hello",
                 "user": "user1",
                 "is_adopted": True,
-                "talk_type": "レギュラートーク（15分）",
+                "talk_type": "15m",
                 "detail_url": "http://example.com/1",
             },
             {
                 "title": "goodbye",
                 "user": "user3",
                 "is_adopted": True,
-                "talk_type": "レギュラートーク（15分）",
+                "talk_type": "15m",
                 "detail_url": "http://example.com/2",
             },
             {
                 "title": "goodbye",
                 "user": "user3",
                 "is_adopted": False,
-                "talk_type": "レギュラートーク（15分）",
+                "talk_type": "15m",
                 "detail_url": "http://example.com/3",
             },
             {
                 "title": "hello2",
                 "user": "user1",
                 "is_adopted": False,
-                "talk_type": "レギュラートーク（30分）",
+                "talk_type": "30m",
                 "detail_url": "http://example.com/4",
             },
             {
                 "title": "hello",
                 "user": "user2",
                 "is_adopted": False,
-                "talk_type": "レギュラートーク（30分）",
+                "talk_type": "30m",
                 "detail_url": "http://example.com/5",
             }
         ]
@@ -55,7 +55,7 @@ class TestSummarize(unittest.TestCase):
                 "title": "hello",
                 "user": "user1",
                 "is_adopted": True,
-                "talk_type": "レギュラートーク（15分） / レギュラートーク（30分）", # 文字列の昇順でソート
+                "talk_types": ["15m", "30m"], # 文字列の昇順でソート
                 "detail_url": "http://example.com/1",
             },
             # 同一のトークタイプは集約されること
@@ -63,7 +63,7 @@ class TestSummarize(unittest.TestCase):
                 "title": "goodbye",
                 "user": "user3",
                 "is_adopted": True,
-                "talk_type": "レギュラートーク（15分）",
+                "talk_types": ["15m"],
                 "detail_url": "http://example.com/2",
             },
             # title が不一致なものは集約されないこと
@@ -71,7 +71,7 @@ class TestSummarize(unittest.TestCase):
                 "title": "hello2",
                 "user": "user1",
                 "is_adopted": False,
-                "talk_type": "レギュラートーク（30分）",
+                "talk_types": ["30m"],
                 "detail_url": "http://example.com/4",
             },
             # user が不一致なものは集約されないこと
@@ -79,7 +79,7 @@ class TestSummarize(unittest.TestCase):
                 "title": "hello",
                 "user": "user2",
                 "is_adopted": False,
-                "talk_type": "レギュラートーク（30分）",
+                "talk_types": ["30m"],
                 "detail_url": "http://example.com/5",
             },
         ])

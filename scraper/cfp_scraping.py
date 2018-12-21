@@ -91,6 +91,16 @@ class CFP:
                 'slide_url': self.slide_url
                 }
 
+    def normalization(self):
+        dict = {
+            'LT（5分）': 'LT',
+            'iOSDCルーキーズ LT（5分）': 'LT_R',
+            'レギュラートーク（15分）': '15m',
+            'レギュラートーク（30分）': '30m',
+            'iOSエンジニアに聞いて欲しいトーク（30分）': 'iOS'
+        }
+        self.talk_type = dict[self.talk_type]
+
     def desc(self):
         print(f"""-------------------------------------------------------------------
 【title】
@@ -176,6 +186,7 @@ class CFP:
             if len(slide_url) > 0:
                 cfp.slide_url = slide_url[0].attrib['href']
         cfp.desc()
+        cfp.normalization()
         return cfp
 
 if __name__ == '__main__':
