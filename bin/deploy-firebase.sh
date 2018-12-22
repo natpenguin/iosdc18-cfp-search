@@ -17,7 +17,8 @@ if [ -d '../tmp/volume' ]; then
     rm -r ../tmp/volume
 fi
 ./deploy-local-k8s.sh
-curl -o ../public/api.json http://localhost/api/v1/proposals
+mkdir -p ../public/api/v1/
+curl -o ../public/api/v1/proposals.json http://localhost/api/v1/proposals
 ./destroy-local-k8s.sh
 
 #

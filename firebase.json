@@ -9,7 +9,7 @@
     "redirects": [
       {
         "source" : "/api/v1/proposals",
-        "destination" : "/api.json",
+        "destination" : "/api/v1/proposals.json",
         "type" : 301
       }
     ]
