@@ -17,7 +17,7 @@ if [ -d '../tmp/volume' ]; then
     rm -r ../tmp/volume
 fi
 ./deploy-local-k8s.sh
-curl -o ../public/api.json http://localhost/api
+curl -o ../public/api.json http://localhost/api/v1/proposals
 ./destroy-local-k8s.sh
 
 #
@@ -25,11 +25,6 @@ curl -o ../public/api.json http://localhost/api
 #
 cp ../nginx/index.html ../public
 cp -r ../nginx/assets ../public
-
-#
-# change endpoint
-#
-sed -i '' "s|axios.get('/api')|axios.get('/api.json')|" ../public/assets/index.js
 
 #
 # deploy

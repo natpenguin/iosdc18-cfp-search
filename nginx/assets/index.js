@@ -72,7 +72,7 @@ const proposalsInstance = new Vue({
 })
 
 // プロポーザル一覧を読み込み
-axios.get('/api')
+axios.get('/api/v1/proposals')
     .then(function (response) {
         let proposals = response.data.map(proposal => {
             const dict = {

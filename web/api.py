@@ -72,5 +72,5 @@ def summarize_proposal(src, dest):
 
 
 app = falcon.API()
-app.add_route('/api', Resource())
-app.add_route('/api/health', ResourceHealth())
+app.add_route('/api/v1/proposals', Resource())
+app.add_route('/api/v1/health', ResourceHealth())
