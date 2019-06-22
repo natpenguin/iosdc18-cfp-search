@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="iOSDC 2018 のプロポーザル（CfP）の一覧の閲覧・検索ができるサービスです。" />
+    <meta name="description" content="iOSDC 2019 のプロポーザル（CfP）の一覧の閲覧・検索ができるサービスです。" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>この素晴らしいCfPに祝福を！ - iOSDC 2018 応援サイト / プロポーザル（CfP）一覧の閲覧・検索</title>
+    <title>この素晴らしいCfPに祝福を！2 - iOSDC 2019 応援サイト / プロポーザル（CfP）一覧の閲覧・検索</title>
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
     <style type="text/css">
@@ -17,7 +17,30 @@
     }
     span.tag.cfp_adopted {
         color: #ffffff;
-        background-color: #f44336;
+        background-color: #ff0000;
+    }
+    .title {
+        color: #fff !important;
+    }
+    .hero {
+        background-image: linear-gradient(141deg,#ea5a35 0,#ea5a35 71%,#ea5a35 100%) !important;
+    }
+    .hero .subtitle {
+        color: #fff !important;
+    }
+    .footer {
+        background-color: #385eaa !important;
+        color: #fff !important;
+    }
+    .footer a {
+        color: #fff;
+        text-decoration: underline;
+    }
+    .search-count {
+        padding-left: 24px;
+    }
+    .is-selected {
+        background-color: #ea5a35 !important;
     }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -31,17 +54,18 @@
     </script>
 </head>
 <body>
-    <section class="hero is-small is-success is-bold">
+    <section class="hero is-small is-light is-bold">
         <div class="hero-head">
-            <nav class="navbar">
+            <!-- 今年のバナーが用意されたらそれを配置してコメントを外す -->
+            <!-- <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="https://iosdc.jp/2018/" target="_blank">
+                        <a class="navbar-item" href="https://iosdc.jp/2019/" target="_blank">
                             <img src="/assets/iOSDC_3.png">
                         </a>
                     </div>
                 </div>
-            </nav>
+            </nav> -->
         </div>
         <div class="hero-body">
             <div class="container">
@@ -65,14 +89,15 @@
                         Official
                         </p>
                         <ul class="menu-list">
-                            <li><a href="https://iosdc.jp/2018/" target="_blank">iOSDC Japan 2018</a></li>
+                            <li><a href="https://iosdc.jp/2019/" target="_blank">iOSDC Japan 2019</a></li>
                         </ul>
-                        <p class="menu-label">
+                        <!-- 今年の関連イベントが発表されたらコメントを外す -->
+                        <!-- <p class="menu-label">
                             Informal
                         </p>
                         <ul class="menu-list">
                             <li>
-                                <span><a href="https://ore-con.firebaseapp.com/" target="_blank">俺コン 2018 Summer</a></span>
+                                <span><a href="https://ore-con.firebaseapp.com/" target="_blank">俺コン 2019 Summer</a></span>
                                 <ul>
                                     <li><a href="https://orecon.connpass.com/event/94858/" target="_blank">Day. 1</a></li>
                                     <li><a href="https://orecon.connpass.com/event/94867/" target="_blank">Day. 2</a></li>
@@ -81,13 +106,13 @@
                         </ul>
                         <ul class="menu-list">
                             <li>
-                                <span>iOSDC 2018 Reject Conference</span>
+                                <span>iOSDC 2019 Reject Conference</span>
                                 <ul>
                                     <li><a href="https://iosdc-reject-conference.connpass.com/event/93314/" target="_blank">days1</a></li>
                                     <li><a href="https://iosdc-reject-conference.connpass.com/event/93315/" target="_blank">days2</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> -->
                         <p class="menu-label">
                             Developer
                         </p>
@@ -106,8 +131,9 @@
                 <!-- フィルタリング -->
                 <div class="section is-small">
                     <div id="searchCondition" class="field is-grouped is-grouped-multiline">
+                        <!-- 採択や関連イベントが追加されたらコメントを外す-->
                         <!-- 採択 -->
-                        <div class="control buttons has-addons">
+                        <!-- <div class="control buttons has-addons">
                             <span
                                 v-on:click="eventType=undefined; isAdopt=true; isNotAdopt=true; filter(this)"
                                 v-bind:class="{ 'is-selected is-link': !eventType && isAdopt && isNotAdopt }" class="button">
@@ -123,9 +149,9 @@
                                 v-bind:class="{ 'is-selected is-info': !eventType && !isAdopt && isNotAdopt }" class="button">
                                 非採択
                             </span>
-                        </div>
+                        </div> -->
                         <!-- 関連イベント -->
-                        <div class="control buttons has-addons">
+                        <!-- <div class="control buttons has-addons">
                             <span
                                 v-on:click="eventType='orecon'; filter(this)"
                                 v-bind:class="{ 'is-selected is-warning': eventType === 'orecon' }" class="button">
@@ -136,7 +162,7 @@
                                 v-bind:class="{ 'is-selected is-primary': eventType === 'rejectcon' }" class="button">
                                 Reject Conf
                             </span>
-                        </div>
+                        </div> -->
                         <!-- キーワード検索 -->
                         <div class="control field is-horizontal">
                             <p class="control has-icons-left">
@@ -146,12 +172,46 @@
                                 </span>
                             </p>
                         </div>
+                        <!-- トークタイプ検索 -->
+                        <div class="control buttons has-addons">
+                            <span
+                                v-on:click="talkType=''; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': talkType === '' }" class="button">
+                                すべて
+                            </span>
+                            <span
+                                v-on:click="talkType='LT'; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': talkType === 'LT' }" class="button">
+                                LT
+                            </span>
+                            <span
+                                v-on:click="talkType='LT_R'; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': talkType === 'LT_R' }" class="button">
+                                ルーキーズ
+                            </span>
+                            <span
+                                v-on:click="talkType='15m'; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': talkType === '15m' }" class="button">
+                                30分
+                            </span>
+                            <span
+                                v-on:click="talkType='30m'; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': talkType === '30m' }" class="button">
+                                60分
+                            </span>
+                            <span
+                                v-on:click="talkType='iOS'; filter(this)"
+                                v-bind:class="{ 'is-selected is-primary': talkType === 'iOS' }" class="button">
+                                パッション
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <!-- プロポーザル一覧 -->
                 <div id="proposals">
                     <!-- 一覧 -->
                     <template v-if="proposals">
+                        <span class="search-count">検索結果: {{ proposals.length }}件</span>
                         <div v-for="proposal in proposals">
                             <section class="section is-small">
                                 <div class="card">
@@ -169,13 +229,13 @@
                                                     <span v-show="proposal.is_adopted_rejectcon" class="tag is-primary">Reject Conf</span>
                                                     <a :href="proposal.detail_url" target="_blank">{{ proposal.title }}</a>&nbsp;
                                                 </p>
-                                                <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id">@{{ proposal.twitter_id }}</a></p>
+                                                <p class="subtitle is-6">{{ proposal.user }} / <a :href="'https://twitter.com/' +  proposal.twitter_id" target="_blank">@{{ proposal.twitter_id }}</a></p>
                                             </div>
                                         </div>
                                         <div class="content">
                                             <p v-html="proposal.description.replace(/\r\n/g,'<br/>')"></p>
                                         </div>
-                                        <span class="small">
+                                        <span class="tag is-light">
                                             <a v-if="proposal.video_url"
                                                 class="button is-small is-link is-outlined"
                                                 :href="proposal.video_url"
@@ -217,10 +277,10 @@
     <footer class="footer">
         <div class="content has-text-centered">
             <p>
-                <strong>Powerd</strong> by <a href="http://blog.penginmura.tech/">ペンギン村 Tech</a>.
+                Powerd by <a href="http://blog.penginmura.tech/">ペンギン村 Tech</a>.
             </p>
             <p>
-                ペンギン村 Tech is believe in <a href="https://iosdc.jp/2018/">iOSDC 2018</a>.
+                ペンギン村 Tech is believe in <a href="https://iosdc.jp/2019/">iOSDC 2019</a>.
             </p>
         </div>
     </footer>

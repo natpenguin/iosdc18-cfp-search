@@ -7,7 +7,8 @@ const searchField = new Vue({
         searchWord: '',
         isAdopt: true,
         isNotAdopt: true,
-        eventType: undefined // (orecon|rejectcon)
+        eventType: undefined, // (orecon|rejectcon),
+        talkType: ''
     },
     watch: {
         searchWord: 'filter'
@@ -18,6 +19,8 @@ const searchField = new Vue({
             let isAdoptValue = this.isAdopt;
             let isNotAdoptValue = this.isNotAdopt;
             let eventType = this.eventType;
+            let talkType = this.talkType;    
+
             let isKeywordMatch = function(value) {
                 if (text.length > 0) {
                     let regText = new RegExp(text.trim(), 'i')
@@ -58,6 +61,21 @@ const searchField = new Vue({
                         && (isAdopted(value) || isNotAdopted(value))
                 );
             }
+
+            if(talkType) {
+                let isMatchTalkType = function(proposal) {
+                    return (talkType === '')
+                        || (talkType === 'LT' && proposal.talk_type === 'LT（5分）')
+                        || (talkType === 'LT_R' && proposal.talk_type === 'iOSDCルーキーズ LT（5分）')
+                        || (talkType === '15m' && proposal.talk_type === 'レギュラートーク（30分）')
+                        || (talkType === '30m' && proposal.talk_type === 'レギュラートーク（60分）')
+                        || (talkType === 'iOS' && proposal.talk_type === '技術パッション共有トーク（60分）');
+                };
+                filteredData = proposalsMaster.filter(proposal =>
+                    isKeywordMatch(proposal) && isMatchTalkType(proposal)
+                );
+            }
+
             proposalsInstance.proposals = filteredData;
         }
     }
@@ -74,18 +92,18 @@ const proposalsInstance = new Vue({
 // プロポーザル一覧を読み込み
 axios.get('/api/v1/proposals')
     .then(function (response) {
-        // let proposals = response.data.map(proposal => {
-        //     const dict = {
-        //         'LT': 'LT（5分）',
-        //         'LT_R': 'iOSDCルーキーズ LT（5分）',
-        //         '15m': 'レギュラートーク（15分）',
-        //         '30m': 'レギュラートーク（30分）',
-        //         'iOS': 'iOSエンジニアに聞いて欲しいトーク（30分）',
-        //     }
-        //     proposal.talk_type = proposal.talk_types.map(talk_type => dict[talk_type]).join(' / ')
-        //     return proposal
-        // });
-        let proposals = response.data;
+        let proposals = response.data.map(proposal => {
+            const dict = {
+                'LT': 'LT（5分）',
+                'LT_R': 'iOSDCルーキーズ LT（5分）',
+                '15m': 'レギュラートーク（30分）',
+                '30m': 'レギュラートーク（60分）',
+                'iOS': '技術パッション共有トーク（60分）',
+            }
+            proposal.talk_type = dict[proposal.talk_type];//.map(talk_type => dict[talk_type]).join(' / ')
+            return proposal
+        });
+        // let proposals = response.data;
         proposalsMaster = proposals;
         proposalsInstance.proposals = proposals;
     })
