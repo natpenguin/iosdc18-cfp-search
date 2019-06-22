@@ -7,25 +7,47 @@ import csv
 import re
 import cfp_persistence_manager as cpm
 import datetime
+import json
 
 def main():
     cfps = []
-    for i in range(1, 29):
+    for i in range(1, 25):
         print(f"""===============================================
                page: {i}
 ===============================================""")
         cfps = cfps + fetchPageCfps(i)
+        # cfps = fetchPageCfps(i)
+        # # c0 = cfps[0].generate_document()
+        # # c1 = cfps[1].generate_document()
+        # # cfps = [c0, c1]
 
-    cpm.cfp_mongo().insert(cfps)
+        # all = map(lambda x: x.generate_document(), cfps)
+        # all = list(all)
+        # print("🍎")
+        # print(all)
+        # print("🍊")
+        # print(json.dumps(all))
 
-    save_csv(cfps)  # デバッグ用
+    cfps2 = map(lambda x: x.generate_document(), cfps)
+
+    s = json.dumps(list(cfps2), ensure_ascii=False)
+    print(s)
+
+    with open("proposals.json", 'w') as f:
+        f.write(s)
+
+    # savepath = 'sample.json'
+    # with open(savepath, 'w') as outfile:
+
+    # save_csv(cfps)  # デバッグ用
 
 
 def fetchPageCfps(page_num):
     return parseHTML(fetchPageData(page_num))
 
 def fetchPageData(page_num):
-    data = urlopen("https://fortee.jp/iosdc-japan-2018/proposal?f=all&page={0}".format(page_num))
+    # 🍎 URL を変更
+    data = urlopen("https://fortee.jp/iosdc-japan-2019/proposal?f=all&page={0}".format(page_num))
     response = data.read()
     return response
 
@@ -94,10 +116,10 @@ class CFP:
     def normalization(self):
         dict = {
             'LT（5分）': 'LT',
-            'iOSDCルーキーズ LT（5分）': 'LT_R',
-            'レギュラートーク（15分）': '15m',
-            'レギュラートーク（30分）': '30m',
-            'iOSエンジニアに聞いて欲しいトーク（30分）': 'iOS'
+            'iOSDCルーキーズLT（5分）': 'LT_R',
+            'レギュラートーク（30分）': '15m',
+            'レギュラートーク（60分）': '30m',
+            '技術パッション共有トーク（60分）': 'iOS' # あとで変えるかも
         }
         self.talk_type = dict[self.talk_type]
 

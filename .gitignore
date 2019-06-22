@@ -27,3 +27,5 @@ public
 # python
 scraper/venv
 scraper/reports
+
+venv

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "nginx",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -9,7 +9,7 @@
     "redirects": [
       {
         "source" : "/api/v1/proposals",
-        "destination" : "/api/v1/proposals.json",
+        "destination" : "/assets/proposals.json",
         "type" : 301
       }
     ]
