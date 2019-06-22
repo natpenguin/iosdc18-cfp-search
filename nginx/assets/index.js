@@ -19,15 +19,18 @@ const searchField = new Vue({
             let isAdoptValue = this.isAdopt;
             let isNotAdoptValue = this.isNotAdopt;
             let eventType = this.eventType;
-            let talkType = this.talkType;    
+            let talkType = this.talkType;
 
             let isKeywordMatch = function(value) {
                 if (text.length > 0) {
-                    let regText = new RegExp(text.trim(), 'i')
-                    return regText.test(value.title) ||
-                        regText.test(value.user) ||
-                        regText.test(value.twitter_id) ||
-                        regText.test(value.talk_type);
+                    let words = text.split(/\s+/);
+                    return words.filter(word => {
+                        let regText = new RegExp(word.trim(), 'i')
+                        return regText.test(value.title) ||
+                            regText.test(value.user) ||
+                            regText.test(value.twitter_id) ||
+                            regText.test(value.talk_type);
+                    }).length == words.length;
                 } else {
                     return true;
                 }
