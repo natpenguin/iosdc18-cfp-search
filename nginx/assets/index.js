@@ -93,7 +93,7 @@ const proposalsInstance = new Vue({
 })
 
 // プロポーザル一覧を読み込み
-axios.get('/api/v1/proposals')
+axios.get('/assets/proposals.json')
     .then(function (response) {
         let proposals = response.data.map(proposal => {
             const dict = {
@@ -103,10 +103,9 @@ axios.get('/api/v1/proposals')
                 '30m': 'レギュラートーク（60分）',
                 'iOS': '技術パッション共有トーク（60分）',
             }
-            proposal.talk_type = dict[proposal.talk_type];//.map(talk_type => dict[talk_type]).join(' / ')
+            proposal.talk_type = dict[proposal.talk_type];
             return proposal
         });
-        // let proposals = response.data;
         proposalsMaster = proposals;
         proposalsInstance.proposals = proposals;
     })

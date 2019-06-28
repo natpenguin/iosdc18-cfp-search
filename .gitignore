@@ -29,3 +29,5 @@ scraper/venv
 scraper/reports
 
 venv
+
+node_modules
