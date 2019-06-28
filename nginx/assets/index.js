@@ -1,5 +1,21 @@
 let proposalsMaster = [];
 
+const darkmode = new Darkmode();
+
+const menu = new Vue({
+    el: '#menu',
+    data: {
+        isDark: darkmode.isActivated(),
+    },
+    methods: {
+        toggleDark: function(event) {
+            darkmode.toggle();
+            this.isDark = darkmode.isActivated();
+            proposalsInstance.isDark = this.isDark;
+        }
+    }
+});
+
 // 検索フィールド
 const searchField = new Vue({
     el: '#searchCondition',
@@ -88,7 +104,8 @@ const searchField = new Vue({
 const proposalsInstance = new Vue({
     el: '#proposals',
     data: {
-        proposals: undefined
+        proposals: undefined,
+        isDark: darkmode.isActivated()
     }
 })
 
